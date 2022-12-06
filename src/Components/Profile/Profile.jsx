@@ -7,6 +7,7 @@ export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
   return (
     <>
+    
       <Nav />
       {isAuthenticated && (
         <div className={s.App}>
