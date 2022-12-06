@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./App/App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
@@ -10,7 +10,7 @@ import store from "./redux/store";
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Auth0Provider
@@ -23,5 +23,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <App />
       </Auth0Provider>
     </BrowserRouter>
-  </Provider>
+  </Provider>,
+  document.getElementById("root")
 );

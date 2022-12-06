@@ -21,6 +21,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "console":
+      return {
+        ...state,
+      };
     default:
       return {
         ...state,
