@@ -41,9 +41,18 @@ export default function Nav() {
       </nav>
       <section>
         {/* <NavLink to={"/profile"}>Profile</NavLink> */}
-        <p>Hola, <b>{user?.given_name}!</b></p>
-        <Logout />  
-        <img src={user?.picture} alt={user?.name} />
+        <p>
+          Hola, <b>{user?.given_name}!</b>
+        </p>
+        <img
+          src={
+            user
+              ? user.picture
+              : "https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"
+          }
+          alt={user?.name}
+        />
+        <Logout />
         {/* <button onClick={callProtectedApi}>Call API protected</button> */}
       </section>
     </header>
