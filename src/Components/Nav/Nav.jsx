@@ -8,8 +8,6 @@ import s from "./Nav.module.css";
 export default function Nav() {
   const { user } = useAuth0();
 
-  console.log(user);
-
   return (
     <header className={s.container}>
       <img
