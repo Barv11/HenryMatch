@@ -12,26 +12,20 @@ import axios from "axios";
 
 let url = "http://localhost:3001";
 
-// export const reviewsOfAProduct = (id) => async (dispatch) => {
-//   try {
-//     const reviews = (await axios.get(`${url}/reviews?productoId=${id}`)).data;
-//     dispatch({ type: USER_LOGIN, payload: reviews });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-export const saveUser = (token) => async (dispatch) => {
-  try {
-    const user = (
-      await axios.get("http://localhost:3001/user/save", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
-    ).data;
+export const saveUser = ({token, user}) => async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${url}/user/save`,
+        user,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
     dispatch({ type: SAVE_USER, payload: user });
-  } catch (error) {
-    console.log(error.message);
-  }
+    console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
 };

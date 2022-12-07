@@ -6,24 +6,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import s from "./Nav.module.css";
 
 export default function Nav() {
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
-    useAuth0();
+  const { user } = useAuth0();
 
   console.log(user);
-
-  const callProtectedApi = async () => {
-    try {
-      const token = await getAccessTokenSilently();
-      const response = await axios.get("http://localhost:3001/user/save", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
   return (
     <header className={s.container}>
@@ -36,7 +21,7 @@ export default function Nav() {
           Inicio
         </NavLink>
         <NavLink to={"/profile"} className={s.link}>
-          Etc
+          Perfil
         </NavLink>
       </nav>
       <section>
@@ -53,7 +38,6 @@ export default function Nav() {
           alt={user?.name}
         />
         <Logout />
-        {/* <button onClick={callProtectedApi}>Call API protected</button> */}
       </section>
     </header>
   );
