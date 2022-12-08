@@ -1,6 +1,4 @@
 import React from "react";
-import Loader from "../Loader/Loader";
-import Nav from "../Nav/Nav";
 // import axios from "axios";
 // import { useAuth0 } from "@auth0/auth0-react";
 
@@ -25,8 +23,7 @@ export default function Home() {
 
   return (
     <div>
-      <Nav />
-      <h1>Match App</h1>
+      <h1>Match App!!</h1>
       {/* <button onClick={handleOnClick}>API</button> */}
     </div>
   );
