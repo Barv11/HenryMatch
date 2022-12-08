@@ -18,42 +18,38 @@ export default function Profile() {
   } else {
     return (
       <>
-        <main className={s.container}>
-          <section className={s.profile}>
-            <section className={s.card}>
-              <img src={user?.picture} alt="" />
-              <h2>{user?.name}</h2>
-              {/* <p>{user?.email}</p> */}
-              <p>{user?.nickname}</p>
-            </section>
-            <div className={s.icons}>
-              <a
-                data-foo="GitHub"
-                href="https://github.com/Barv11"
-                target="BLANK"
-              >
-                <UilGithub /> Github
-              </a>
-              <a
-                data-foo="LinkedIn"
-                href="https://www.linkedin.com/in/barv11/"
-                target="BLANK"
-              >
-                <UilLinkedin /> LinkedIn
-              </a>
-            </div>
-            <div className={s.rocket}>
-            <Rocket />
-            <Rocket />
-            <Rocket />
-            <Rocket />
-            <Rocket />
-            <Rocket />
-            <Rocket />
-            <Rocket />
-            </div>
+        <section className={s.profile}>
+          <section className={s.card}>
+            <img src={user?.picture} alt="" />
+            <h2>{user?.name}</h2>
+            {/* <p>{user?.email}</p> */}
+            <p>{user?.nickname}</p>
           </section>
-        </main>
+          <div className={s.icons}>
+            <a data-foo="GitHub" href="#" target="BLANK">
+              <UilGithub /> Github
+            </a>
+            <a data-foo="LinkedIn" href="#" target="BLANK">
+              <UilLinkedin /> LinkedIn
+            </a>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+            veritatis sint alias minus magnam itaque velit, placeat provident
+            rerum ab dignissimos cumque, consequatur sed dicta praesentium vitae
+            illum blanditiis culpa?
+          </p>
+          <div className={s.rocket}>
+            <Rocket />
+            <Rocket />
+            <Rocket />
+            <Rocket />
+            <Rocket />
+            <Rocket />
+            <Rocket />
+            <Rocket />
+          </div>
+        </section>
       </>
     );
   }

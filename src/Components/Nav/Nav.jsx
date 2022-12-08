@@ -102,16 +102,20 @@ export default function Nav() {
               </MenuItem>
             </NavLink>
 
-            <MenuItem>
-              <span className={s.drop}>Ajustes</span>
-            </MenuItem>
+            <NavLink to={"/match/me"} className={s.drop}>
+              <MenuItem>
+                <span className={s.drop}>Editar Perfil</span>
+              </MenuItem>
+            </NavLink>
             <MenuItem>
               <Logout />
             </MenuItem>
           </Menu>
         </section>
       </header>
-      <Outlet />
+      <main className={s.body}>
+        <Outlet />
+      </main>
     </>
   );
 }
