@@ -7,6 +7,8 @@ export default function UpdateProfile() {
   const [data, setData] = useState({});
   const { user } = useAuth0();
 
+  // email family_name given_name name nickname picture
+
   const handlerOnChange = () => {
     setData({
       ...data,
@@ -14,11 +16,16 @@ export default function UpdateProfile() {
     });
   };
 
-  console.log('');
+  console.log(user)
   return (
-    <main className={s.container}>
-      <section>
-        <section className={s.update}>
+    <>
+      <section className={s.container}>
+        <form className={s.update}>
+          <div className={s.user}>
+            {/* <h1>Datos Adicionales</h1> */}
+            <img src={user?.picture} alt={user?.name} />
+            <div></div>
+          </div>
           <section className={s.part}>
             <div className={s.name}>
               <input type="text" name="name" id="name" required />
@@ -39,10 +46,6 @@ export default function UpdateProfile() {
           </section>
           <section className={s.part}>
             <div className={s.name}>
-              <input type="text" name="name" id="name4" required />
-              <label htmlFor="name4">Nombre Completo</label>
-            </div>
-            <div className={s.name}>
               <input type="text" name="name" id="name5" required />
               <label htmlFor="name5">Nombre Completo</label>
             </div>
@@ -54,9 +57,12 @@ export default function UpdateProfile() {
               <textarea type="text" name="name" id="name7" required />
               <label htmlFor="name7">Descripción</label>
             </div>
+            <div className={s.submit}>
+              <button type="submit">Guardar Datos</button>
+            </div>
           </section>
-        </section>
+        </form>
       </section>
-    </main>
+    </>
   );
 }
