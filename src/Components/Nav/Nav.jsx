@@ -32,11 +32,12 @@ export default function Nav() {
               <span className={s.menu}>Inicio</span>
             </Button>
           </NavLink>
-          <NavLink to={"/match/me"} className={s.link}>
+          {/* <NavLink to={"/match/me"} className={s.link}>
             <Button color="inherit">
               <span className={s.menu}>Perfil</span>
             </Button>
-          </NavLink>
+          </NavLink> */}
+
           <NavLink to={"/match/about"} className={s.link}>
             <Button color="inherit">
               <span className={s.menu}>Nosotros</span>
@@ -44,9 +45,11 @@ export default function Nav() {
           </NavLink>
         </nav>
         <section className={s.user}>
-          <p>
-            Hola, <b>{user?.given_name}!</b>
-          </p>
+          {user ? (
+            <p>
+              Hola, <b>{user.given_name}!</b>
+            </p>
+          ) : null}
           {user ? (
             <img
               src={user.picture}
