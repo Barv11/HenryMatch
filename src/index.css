@@ -19,7 +19,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1;
-  background-color: #1f1f1f;
+  /* background-color: #1f1f1f; */
 
 }
 ol, ul {
@@ -43,7 +43,7 @@ code {
 
 :root {
   --transition: all 400ms ease;
-  --backgroundPage: #9b5959;
+  --backgroundPage: #1f1f1f;
   --fontGlobal: 'Montserrat', sans-serif; 
 }
 

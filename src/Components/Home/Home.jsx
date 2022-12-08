@@ -1,6 +1,8 @@
 import React from "react";
+import UpdateProfile from "../UpdateProfile/UpdateProfile";
 // import axios from "axios";
 // import { useAuth0 } from "@auth0/auth0-react";
+import s from "./Home.module.css";
 
 export default function Home() {
   // const { getAccessTokenSilently } = useAuth0();
@@ -22,9 +24,10 @@ export default function Home() {
   // };
 
   return (
-    <div>
+    <section className={s.container}>
       <h1>Match App!!</h1>
       {/* <button onClick={handleOnClick}>API</button> */}
-    </div>
+      {/* <UpdateProfile /> */}
+    </section>
   );
 }
