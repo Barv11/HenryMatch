@@ -13,15 +13,7 @@ const initialState = {};
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case USER_LOGIN:
-      return {
-        ...state,
-      };
     case SAVE_USER:
-      return {
-        ...state,
-      };
-    case "console":
       return {
         ...state,
       };

@@ -19,6 +19,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1;
+  background-color: #1f1f1f;
+
 }
 ol, ul {
   list-style: none;

@@ -1,17 +1,23 @@
 import React from "react";
 import Login from "../Login/Login";
-import s from "./LandingPage.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { saveUser } from "../../redux/actions";
+
+import s from "./LandingPage.module.css";
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
+  const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
 
-  useEffect(() => {
+  useEffect(async () => {
     if (isAuthenticated) {
-      navigate("/home");
+      const token = await getAccessTokenSilently();
+      dispatch(saveUser({ user, token }));
+      navigate("/match");
     }
   }, [isAuthenticated]);
 

@@ -1,60 +1,117 @@
 import React from "react";
 import Logout from "../Logout/Logout";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { NavLink, Outlet } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import s from "./Nav.module.css";
+import { UilUser } from "@iconscout/react-unicons";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
 
 export default function Nav() {
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
-    useAuth0();
+  const { user } = useAuth0();
 
-  console.log(user);
-
-  const callProtectedApi = async () => {
-    try {
-      const token = await getAccessTokenSilently();
-      const response = await axios.get("http://localhost:3001/user/save", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
-    <header className={s.container}>
-      <img
-        src="https://www.soyhenry.com/_next/image?url=https%3A%2F%2Fassets.soyhenry.com%2Fhenry-landing%2Fassets%2FHenry%2Flogo-white.png&w=128&q=75"
-        alt="Henry"
-      />
-      <nav>
-        <NavLink to={"/home"} className={s.link}>
-          Inicio
-        </NavLink>
-        <NavLink to={"/profile"} className={s.link}>
-          Etc
-        </NavLink>
-      </nav>
-      <section>
-        {/* <NavLink to={"/profile"}>Profile</NavLink> */}
-        <p>
-          Hola, <b>{user?.given_name}!</b>
-        </p>
-        <img
-          src={
-            user
-              ? user.picture
-              : "https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"
-          }
-          alt={user?.name}
-        />
-        <Logout />
-        {/* <button onClick={callProtectedApi}>Call API protected</button> */}
-      </section>
-    </header>
+    <>
+      <header className={s.container}>
+        <span className={s.logo}>
+          <img src="/logohenry.webp" alt="Henry" />| Match
+        </span>
+        <nav className={s.navbar}>
+          <NavLink to={"/match"} className={s.link}>
+            <Button color="inherit">
+              <span className={s.menu}>Inicio</span>
+            </Button>
+          </NavLink>
+          <NavLink to={"/match/me"} className={s.link}>
+            <Button color="inherit">
+              <span className={s.menu}>Perfil</span>
+            </Button>
+          </NavLink>
+          <NavLink to={"/match/about"} className={s.link}>
+            <Button color="inherit">
+              <span className={s.menu}>Nosotros</span>
+            </Button>
+          </NavLink>
+        </nav>
+        <section className={s.user}>
+          <p>
+            Hola, <b>{user?.given_name}!</b>
+          </p>
+          {user ? (
+            <img
+              src={user.picture}
+              alt={user.name}
+              onClick={handleClick}
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+            />
+          ) : (
+            <span>
+              <UilUser />
+            </span>
+          )}
+          <Menu
+            anchorEl={anchorEl}
+            id="account-menu"
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: "visible",
+                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                mt: 1.5,
+                "& .MuiAvatar-root": {
+                  width: 32,
+                  height: 32,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                "&:before": {
+                  content: '""',
+                  display: "block",
+                  position: "absolute",
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: "background.paper",
+                  transform: "translateY(-50%) rotate(45deg)",
+                  zIndex: 0,
+                },
+              },
+            }}
+            transformOrigin={{ horizontal: "right", vertical: "top" }}
+            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+          >
+            <NavLink to={"/match/me"} className={s.drop}>
+              <MenuItem>
+                <span className={s.drop}>Perfil</span>
+              </MenuItem>
+            </NavLink>
+
+            <MenuItem>
+              <span className={s.drop}>Ajustes</span>
+            </MenuItem>
+            <MenuItem>
+              <Logout />
+            </MenuItem>
+          </Menu>
+        </section>
+      </header>
+      <Outlet />
+    </>
   );
 }

@@ -1,29 +1,30 @@
 .container {
-    width: 100vw;
-    height: 100vh;
-    background-color: #000000;
-    display: flex;
-    justify-content: center;align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container > section {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;align-items: center;
-    padding-bottom: 40px;
-    gap: .2em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 40px;
+  gap: 0.2em;
 }
 
 .login {
-    color: #ffffff;
-
+  color: #ffffff;
 }
 
 .login > p {
-    font-size: 2.5rem;
-    font-weight: 400;
+  font-size: 2.2rem;
+  font-weight: 400;
 }
 
 .login > p > b {
-    font-weight: 600;
+  font-weight: 600;
 }
