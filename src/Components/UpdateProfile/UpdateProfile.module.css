@@ -9,45 +9,60 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
+  backdrop-filter: blur(0);
+  animation: blur 1s forwards;
+}
+
+@keyframes blur {
+  0% {
+  background-color: transparent;
+  backdrop-filter: blur(0);
+  }
+  100% {
   background-color: rgba(0, 0, 0, 0.479);
   backdrop-filter: blur(1px);
+  }
 }
 
 .update {
   border-radius: 10px;
-  position: relative;
   color: black;
-  width: 65%;
-  height: 65%;
+  width: 45%;
+  height: 70%;
   background-color: #ffffff;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   row-gap: 1em;
   align-content: center;
   box-shadow: 0px 3px 5px -10px #00000081, 0px 2px 10px 0px #00000094,
     0px 1px 10px 0px #000000b7;
+  opacity: 0;
+  transform: translateY(-200%);
+  animation: render 1s forwards;
 }
 
-.user {
-  width: 100%;
-  /* text-align: center; */
-  /* font-size: 2rem; */
-  /* text-transform: uppercase; */
+@keyframes render {
+  0% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.part {
-  flex-basis: 50%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
+.update > h1 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin: 1em;
 }
 
 .name {
-  width: 60%;
+  width: 90%;
   display: flex;
   justify-content: center;
   position: relative;
@@ -57,7 +72,7 @@
 .name > input {
   width: 100%;
   height: 40px;
-  /* border-radius: 10px; */
+  border-radius: 5px;
   padding: 0 1em;
   font-family: var(--fontGlobal);
   font-weight: 400;
@@ -77,7 +92,7 @@
 .name > textarea ~ label {
   top: 15%;
   left: 50%;
-  color: #ffff5b;
+  /* color: #ffff5b; */
 }
 
 .name > label {
@@ -98,7 +113,6 @@
 
 .name > input:valid ~ label,
 .name > input:focus ~ label {
-  /* left: 22%; */
   color: yellow;
   text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black;
   top: -5%;
@@ -107,7 +121,8 @@
 
 .name > textarea:valid ~ label,
 .name > textarea:focus ~ label {
-  /* left: 15%; */
+  color: yellow;
+  text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black;
   top: -1%;
   font-size: 0.8rem;
 }
@@ -117,16 +132,18 @@
 }
 
 .submit {
-  position: absolute;
-  top: 5%;left: 92%;
-  transform: translate(-50%,-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .submit > button {
+  cursor: pointer;
   font-family: var(--fontGlobal);
   white-space: nowrap;
   font-weight: 500;
   font-size: 1rem;
-  border: none;background-color: transparent;
+  border: none;
+  background-color: transparent;
   text-decoration: underline;
 }
