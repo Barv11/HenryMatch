@@ -1,15 +1,16 @@
 import React from "react";
-import Logout from "../Logout/Logout";
+import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import s from "./Nav.module.css";
+import Logout from "../Logout/Logout";
 import { UilUser } from "@iconscout/react-unicons";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+import s from "./Nav.module.css";
 
 export default function Nav() {
-  const { user } = useAuth0();
+  const userCurrent = useSelector((state) => state.userCurrent);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -32,89 +33,106 @@ export default function Nav() {
               <span className={s.menu}>Inicio</span>
             </Button>
           </NavLink>
-          {/* <NavLink to={"/match/me"} className={s.link}>
-            <Button color="inherit">
-              <span className={s.menu}>Perfil</span>
-            </Button>
-          </NavLink> */}
-
           <NavLink to={"/match/about"} className={s.link}>
             <Button color="inherit">
               <span className={s.menu}>Nosotros</span>
             </Button>
           </NavLink>
         </nav>
-        <section className={s.user}>
-          {user ? (
-            <p>
-              Hola, <b>{user.given_name}!</b>
-            </p>
-          ) : null}
-          {user ? (
-            <img
-              src={user.picture}
-              alt={user.name}
-              onClick={handleClick}
-              aria-controls={open ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-            />
+        {/* <section
+          className={s.user}
+          onClick={handleClick}
+          aria-controls={open ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          {userCurrent && Object.entries(userCurrent).length ? (
+            <>
+              <p>
+                Hola, <b>{userCurrent.firstname}!</b>
+              </p>
+              <img src={userCurrent.picture} alt={userCurrent.name} />
+            </>
           ) : (
+            <>
+              <span>
+                <UilUser />
+              </span>
+              <Logout />
+            </>
+          )}
+        </section> */}
+        {userCurrent && Object.entries(userCurrent).length ? (
+          <section
+            className={s.user}
+            onClick={handleClick}
+            aria-controls={open ? "account-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+          >
+            <p>
+              Hola, <b>{userCurrent.firstname}!</b>
+            </p>
+            <img src={userCurrent.picture} alt={userCurrent.name} />
+          </section>
+        ) : (
+          <section className={s.user}>
             <span>
               <UilUser />
             </span>
-          )}
-          <Menu
-            anchorEl={anchorEl}
-            id="account-menu"
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: "visible",
-                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                mt: 1.5,
-                "& .MuiAvatar-root": {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1,
-                },
-                "&:before": {
-                  content: '""',
-                  display: "block",
-                  position: "absolute",
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: "background.paper",
-                  transform: "translateY(-50%) rotate(45deg)",
-                  zIndex: 0,
-                },
+            <Logout />
+          </section>
+        )}
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              mt: 1.5,
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
               },
-            }}
-            transformOrigin={{ horizontal: "right", vertical: "top" }}
-            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-          >
-            <NavLink to={"/match/me"} className={s.drop}>
-              <MenuItem>
-                <span className={s.drop}>Perfil</span>
-              </MenuItem>
-            </NavLink>
-
-            <NavLink to={"/match/me"} className={s.drop}>
-              <MenuItem>
-                <span className={s.drop}>Editar Perfil</span>
-              </MenuItem>
-            </NavLink>
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <NavLink to={"/match/me"} className={s.drop}>
             <MenuItem>
-              <Logout />
+              <span className={s.drop}>Perfil</span>
             </MenuItem>
-          </Menu>
-        </section>
+          </NavLink>
+
+          <NavLink to={"/match/me"} className={s.drop}>
+            <MenuItem>
+              <span className={s.drop}>Editar Perfil</span>
+            </MenuItem>
+          </NavLink>
+          <MenuItem>
+            <Logout />
+          </MenuItem>
+        </Menu>
       </header>
       <main className={s.body}>
         <Outlet />

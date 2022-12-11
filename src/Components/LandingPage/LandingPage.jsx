@@ -11,12 +11,12 @@ import s from "./LandingPage.module.css";
 export default function LandingPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   useEffect(async () => {
     if (isAuthenticated) {
       const token = await getAccessTokenSilently();
-      dispatch(saveUser({ user, token }));
+      dispatch(saveUser(token));
       navigate("/match");
     }
   }, [isAuthenticated]);

@@ -55,7 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.1em;
+  gap: 0.3em;
   padding: 0.3em 1.1em;
   border-radius: 5px;
   text-shadow: 0 0 2px #000000, 0 0 10px #000000, 0 0 6px #000000;
