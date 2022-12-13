@@ -16,12 +16,27 @@
 
 @keyframes blur {
   0% {
-  background-color: transparent;
-  backdrop-filter: blur(0);
+    background-color: transparent;
+    backdrop-filter: blur(0);
   }
   100% {
-  background-color: rgba(0, 0, 0, 0.479);
-  backdrop-filter: blur(1px);
+    background-color: rgba(0, 0, 0, 0.479);
+    backdrop-filter: blur(1px);
+  }
+}
+
+.containerClosed {
+  animation: containerClosed 1s forwards;
+}
+
+@keyframes containerClosed {
+  0% {
+    background-color: rgba(0, 0, 0, 0.479);
+    backdrop-filter: blur(1px);
+  }
+  100% {
+    background-color: transparent;
+    backdrop-filter: blur(0);
   }
 }
 
@@ -29,7 +44,8 @@
   border-radius: 10px;
   color: black;
   width: 45%;
-  height: 70%;
+  /* height: 70%; */
+  padding: 1em;
   background-color: #ffffff;
   display: flex;
   flex-flow: column nowrap;
@@ -55,6 +71,21 @@
   }
 }
 
+.updateClosed {
+  animation: updateClosed 1s forwards;
+}
+
+@keyframes updateClosed {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+}
+
 .update > h1 {
   font-size: 1.8rem;
   text-transform: uppercase;
@@ -68,6 +99,7 @@
   position: relative;
 }
 
+.name > select,
 .name > textarea,
 .name > input {
   width: 100%;
@@ -80,6 +112,13 @@
   background-color: #ffffff;
   outline: 1px solid rgb(37, 37, 37);
   border: none;
+}
+
+.rowInput {
+  width: 90%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1em;
 }
 
 .name > textarea {
@@ -111,15 +150,23 @@
   color: #000000;
 }
 
-.name > input:valid ~ label,
+.name > input:not(:placeholder-shown) ~ label,
 .name > input:focus ~ label {
-  color: yellow;
+  color: #ffff00;
   text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black;
   top: -5%;
   font-size: 0.85rem;
 }
 
-.name > textarea:valid ~ label,
+.name > select:has(option[hidden]:not(:checked)) ~ label,
+.name > select:focus ~ label {
+  color: #ffff00;
+  text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black;
+  top: -5%;
+  font-size: 0.85rem;
+}
+
+.name > textarea:not(:placeholder-shown) ~ label,
 .name > textarea:focus ~ label {
   color: yellow;
   text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black;
@@ -127,9 +174,9 @@
   font-size: 0.8rem;
 }
 
-.part > p {
+/* .part > p {
   white-space: pre-line;
-}
+} */
 
 .submit {
   width: 100%;
