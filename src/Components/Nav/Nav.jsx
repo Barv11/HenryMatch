@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import Logout from "../Logout/Logout";
 import { UilUser } from "@iconscout/react-unicons";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import s from "./Nav.module.css";
+// import ButtonData from "./ButtonDataAdditi/ButtonData";
+import UpdateProfile from "../UpdateProfile/UpdateProfile";
 
 export default function Nav() {
+  const [openModal, setOpenModal] = useState(false);
   const userCurrent = useSelector((state) => state.userCurrent);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,29 +41,6 @@ export default function Nav() {
             </Button>
           </NavLink>
         </nav>
-        {/* <section
-          className={s.user}
-          onClick={handleClick}
-          aria-controls={open ? "account-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-        >
-          {userCurrent && Object.entries(userCurrent).length ? (
-            <>
-              <p>
-                Hola, <b>{userCurrent.firstname}!</b>
-              </p>
-              <img src={userCurrent.picture} alt={userCurrent.name} />
-            </>
-          ) : (
-            <>
-              <span>
-                <UilUser />
-              </span>
-              <Logout />
-            </>
-          )}
-        </section> */}
         {userCurrent && Object.entries(userCurrent).length ? (
           <section
             className={s.user}
@@ -129,6 +108,10 @@ export default function Nav() {
               <span className={s.drop}>Editar Perfil</span>
             </MenuItem>
           </NavLink>
+          <MenuItem onClick={setOpenModal}>
+            {/* <ButtonData onClick={setOpenModal} /> */}
+            <span className={s.drop}>Sobre mí</span>
+          </MenuItem>
           <MenuItem>
             <Logout />
           </MenuItem>
@@ -136,6 +119,7 @@ export default function Nav() {
       </header>
       <main className={s.body}>
         <Outlet />
+        {openModal ? <UpdateProfile setOpenModal={setOpenModal} /> : null}
       </main>
     </>
   );

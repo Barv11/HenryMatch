@@ -7,3 +7,5 @@ export const SEARCH_USER = "SEARCH_USER";
 export const SAVE_USER = "SAVE_USER";
 export const GET_ONE_USER = "GET_ONE_USER";
 export const UPDATE_USER = "UPDATE_USER";
+export const GET_COUNTRIES = "GET_COUNTRIES";
+export const GET_COUNTRY_STATES = "GET_COUNTRY_STATES";

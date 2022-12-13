@@ -36,6 +36,19 @@
   color: #000000;
 }
 
+.card > span {
+  display: flex;align-items: center;
+  color: #707070;
+  font-size: .8rem;
+  font-weight: 500;
+  transform: translateY(-130%);
+}
+
+.card > span > svg {
+  width: 20px;height: 20px;
+  color: #885656;
+}
+
 .card > p {
   font-size: 1.2rem;
   color: #707070;
@@ -93,6 +106,8 @@
   letter-spacing: .1em;
   width: 60%;
   text-align: center;
+  white-space: pre-line;
+
 }
 
 .rocket {

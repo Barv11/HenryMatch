@@ -1,6 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { UilGithub, UilLinkedin, UilSuitcase } from "@iconscout/react-unicons";
+import {
+  UilGithub,
+  UilLinkedin,
+  UilSuitcase,
+  UilMapMarker,
+} from "@iconscout/react-unicons";
 import s from "./Profile.module.css";
 import Rocket from "./Rocket/Rocket";
 import Loader from "../Loader/Loader";
@@ -18,8 +23,12 @@ export default function Profile() {
         <section className={s.profile}>
           <section className={s.card}>
             <img src={user.picture} alt="" />
+            {user.country && (
+              <span>
+                <UilMapMarker /> {user.country} - {user.state}
+              </span>
+            )}
             <h2>{user.name}</h2>
-            {/* <p>{user.email}</p> */}
             <p>{user.nickname}</p>
           </section>
           <div className={s.icons}>
@@ -39,12 +48,7 @@ export default function Profile() {
               </a>
             ) : null}
           </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-            veritatis sint alias minus magnam itaque velit, placeat provident
-            rerum ab dignissimos cumque, consequatur sed dicta praesentium vitae
-            illum blanditiis culpa?
-          </p>
+          {user.description ? <p>{user.description}</p> : null}
           <div className={s.rocket}>
             <Rocket />
             <Rocket />

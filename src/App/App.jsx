@@ -9,14 +9,12 @@ import Loader from "../Components/Loader/Loader";
 import Nav from "../Components/Nav/Nav";
 import Profile from "../Components/Profile/Profile";
 import UpdateProfile from "../Components/UpdateProfile/UpdateProfile";
-import { searchUser } from "../redux/actions";
+import { getCountries, searchUser } from "../redux/actions";
 import "./App.css";
 
 function App() {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-
+  const { user ,isAuthenticated, getAccessTokenSilently } = useAuth0();
   const dispatch = useDispatch();
-
   const userCurrent = useSelector((state) => state.userCurrent);
 
   useEffect(async () => {
@@ -26,6 +24,9 @@ function App() {
     }
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
   return (
     <>
       <Routes>
@@ -35,7 +36,6 @@ function App() {
           <Route path="me" element={<Profile />} />
           <Route path="about" element={<About />} />
         </Route>
-        <Route path="/update" element={<UpdateProfile />} />
         <Route path="*" element={<UpdateProfile />} />
       </Routes>
     </>
