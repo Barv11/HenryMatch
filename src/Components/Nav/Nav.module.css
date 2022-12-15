@@ -114,7 +114,7 @@
   color: #e4e4e4;
 }
 
-.body::after {
+/* .body::after {
   position: absolute;
   z-index: 1;
   content: "";
@@ -127,4 +127,4 @@
     rgba(238, 255, 0, 0.342) 27%,
     rgb(255, 217, 0) 100%
   );
-}
+} */

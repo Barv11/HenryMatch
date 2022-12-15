@@ -5,3 +5,13 @@
 .container > h1 {
     font-size: 5rem;
 }
+
+.btn{
+    text-decoration: none;
+    background-color: #f9d401;
+    padding: 15px;
+    border-radius: 5px;
+    color: black;
+    margin: 25px;
+
+}
