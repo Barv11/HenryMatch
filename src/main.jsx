@@ -17,7 +17,7 @@ ReactDOM.render(
         domain={domain}
         clientId={clientId}
         redirectUri={window.location.origin}
-        audience="this is a unique identifier"
+        audience="http://localhost:3001/barv"
         scope="openid profile email"
       >
         <App />

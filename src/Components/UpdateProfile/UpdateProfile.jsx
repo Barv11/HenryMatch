@@ -1,66 +1,149 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCountryStates, searchUser, updateUser } from "../../redux/actions";
 import s from "./UpdateProfile.module.css";
-import { useState } from "react";
 
-export default function UpdateProfile() {
+export default function UpdateProfile({ setOpenModal }) {
+  const dispatch = useDispatch();
+  const { getAccessTokenSilently } = useAuth0();
   const [data, setData] = useState({});
-  const { user } = useAuth0();
+  const [closed, setClosed] = useState(false);
+  // const message = useSelector((state) => state.message);
+  const countries = useSelector((state) => state.countries);
+  const states = useSelector((state) => state.states);
 
-  // email family_name given_name name nickname picture
-
-  const handlerOnChange = () => {
+  const handlerOnChange = (e) => {
+    if (e.target.name === "country") {
+      dispatch(getCountryStates(e.target.value));
+    }
     setData({
       ...data,
       [e.target.name]: e.target.value,
     });
   };
 
-  console.log(user)
+  const handlerOnSubmit = async (e) => {
+    const token = await getAccessTokenSilently();
+    e.preventDefault();
+    setClosed(true);
+    dispatch(updateUser(token, data));
+    setTimeout(() => {
+      dispatch(searchUser(token));
+      setOpenModal(false);
+    }, 1000);
+  };
+
+  const handlerOnClosed = () => {
+    setClosed(true);
+    setTimeout(() => {
+      setOpenModal(false);
+    }, 1000);
+  };
+
+  const handleClear = () => {
+    document.getElementById("myForm").reset();
+  };
+
   return (
     <>
-      <section className={s.container}>
-        <form className={s.update}>
-          <div className={s.user}>
-            {/* <h1>Datos Adicionales</h1> */}
-            <img src={user?.picture} alt={user?.name} />
-            <div></div>
+      <section
+        className={`${s.container} ${closed ? s.containerClosed : null}`}
+      >
+        <form
+          id="myForm"
+          className={`${s.update} ${closed ? s.updateClosed : null}`}
+          onSubmit={handlerOnSubmit}
+        >
+          <h1>Datos Adicionales</h1>
+          <div className={s.rowInput}>
+            <div className={s.name}>
+              <select onChange={handlerOnChange} name="country" id="Pais">
+                <option value="" hidden></option>
+                {countries.length
+                  ? countries.map((el, idx) => (
+                      <option key={idx} value={el.name}>
+                        {el.name}
+                      </option>
+                    ))
+                  : null}
+              </select>
+              <label htmlFor="Pais">País</label>
+            </div>
+            <div className={s.name}>
+              <select
+                onChange={handlerOnChange}
+                name="state"
+                id="Provincia"
+                required={data?.country?.length}
+              >
+                <option value="" hidden></option>
+                {states.length ? (
+                  states.map((el, idx) => (
+                    <option key={idx} value={el.name}>
+                      {el.name}
+                    </option>
+                  ))
+                ) : (
+                  <option value="" disabled>
+                    Elija un país
+                  </option>
+                )}
+              </select>
+              <label htmlFor="Provincia">Provincia</label>
+            </div>
           </div>
-          <section className={s.part}>
-            <div className={s.name}>
-              <input type="text" name="name" id="name" required />
-              <label htmlFor="name">Nombre Completo</label>
-            </div>
-            <div className={s.name}>
-              <input type="text" name="name" id="name2" required />
-              <label htmlFor="name2">LinkedIn</label>
-            </div>
-            <div className={s.name}>
-              <input type="text" name="name" id="name3" required />
-              <label htmlFor="name3">GitHub</label>
-            </div>
-            <div className={s.name}>
-              <input type="text" name="name" id="name1" required />
-              <label htmlFor="name1">Descripción</label>
-            </div>
-          </section>
-          <section className={s.part}>
-            <div className={s.name}>
-              <input type="text" name="name" id="name5" required />
-              <label htmlFor="name5">Nombre Completo</label>
-            </div>
-            <div className={s.name}>
-              <input type="text" name="name" id="name6" required />
-              <label htmlFor="name6">Descripción</label>
-            </div>
-            <div className={s.name}>
-              <textarea type="text" name="name" id="name7" required />
-              <label htmlFor="name7">Descripción</label>
-            </div>
-            <div className={s.submit}>
-              <button type="submit">Guardar Datos</button>
-            </div>
-          </section>
+          <div className={s.name}>
+            <input
+              onChange={handlerOnChange}
+              placeholder=" "
+              type="text"
+              name="linkedIn"
+              id="LinkedIn"
+            />
+            <label htmlFor="LinkedIn">LinkedIn</label>
+          </div>
+          <div className={s.name}>
+            <input
+              onChange={handlerOnChange}
+              placeholder=" "
+              type="text"
+              name="gitHub"
+              id="GitHub"
+            />
+            <label htmlFor="GitHub">GitHub</label>
+          </div>
+          <div className={s.name}>
+            <input
+              onChange={handlerOnChange}
+              placeholder=" "
+              type="text"
+              name="portfolio"
+              id="Portafolio"
+            />
+            <label htmlFor="Portafolio">Portafolio</label>
+          </div>
+          <div className={s.name}>
+            <textarea
+              onChange={handlerOnChange}
+              placeholder=" "
+              type="text"
+              name="description"
+              id="Descripción"
+            />
+            <label htmlFor="Descripción">Descripción</label>
+          </div>
+          <div className={s.submit}>
+            <button type="submit" onClick={handlerOnSubmit}>
+              Guardar
+            </button>
+            <button type="reset" onClick={handleClear}>
+              Limpiar
+            </button>
+            <button type="button" onClick={handlerOnClosed}>
+              Cancelar
+            </button>
+          </div>
         </form>
       </section>
     </>
