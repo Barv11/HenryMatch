@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+       "question": "¿Que lenguaje de programación dominas?",
+       "answers": ["C#","Typescript","Javascript","Java","C++","PHP","Python"]
+    },
+    {
+        "id": 2,
+       "question": "¿Que lenguaje de programación te gustaria aprender?",
+       "answers": ["C#","Typescript","Javascript","Java","C++","PHP","Python"]
+    },
+    {
+        "id": 3,
+       "question": "¿Que tipo de stack te sientes más comodo?",
+       "answers": ["Back-end", "Full Stack","Front-end"]
+    }
+]
