@@ -7,7 +7,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import s from "./Nav.module.css";
-// import ButtonData from "./ButtonDataAdditi/ButtonData";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 
 export default function Nav() {

@@ -8,8 +8,8 @@ const BootstrapButton = styled(Button)({
   whiteSpace: "nowrap",
   color: "black",
   fontSize: "1rem",
-  padding: "3px 16px",
-  letterSpacing: "0",
+  padding: "0.6em 4em",
+  letterSpacing: "0.2em",
   border: "none",
   backgroundColor: "white",
   fontFamily: ["Montserrat", "sans-serif"].join(","),
@@ -21,11 +21,11 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-export default function ButtonData(props) {
+export default function ButtonText(props) {
   return (
     <>
       <BootstrapButton onClick={props?.onClick} variant="contained">
-        Agregar datos adicionales
+        {props.text}
       </BootstrapButton>
     </>
   );

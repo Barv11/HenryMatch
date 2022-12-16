@@ -8,11 +8,14 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
     <div className={s.modalBackground}>
       <div className={s.modalContainer}>
         <div className={s.titleCloseBtn}>
-        <button
-          className={s.btn}
-          onClick={() => {
-            closeModal(false);
-          }}> X </button>
+          <button
+            className={s.btn}
+            onClick={() => {
+              closeModal(false);
+            }}
+          >
+            ✖
+          </button>
         </div>
         <div className={s.title}>
           <h1>{question}</h1>
@@ -27,8 +30,10 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
         <div className={s.footer}>
           <button
             onClick={() => {
-              closeModal(false); }}
+              closeModal(false);
+            }}
             className={s.cancelBtn}
+
             style={{"background": "red" }}
           > Cancel </button>
           <button onClick={() => nextHandler()}>Continue</button>
