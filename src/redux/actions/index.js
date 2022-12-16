@@ -7,6 +7,7 @@ import {
   SAVE_USER,
   GET_ONE_USER,
   UPDATE_USER,
+  GET_QUESTIONS
 } from "./actionsTypes";
 import axios from "axios";
 
@@ -29,3 +30,8 @@ export const saveUser = ({token, user}) => async (dispatch) => {
       console.log(error.message);
     }
 };
+
+export const getQuestions = () => async (dispatch) => {
+  const dataQuestions = await axios.get(`${url}/questions`)
+  dispatch({type: GET_QUESTIONS, payload: dataQuestions.data})
+}

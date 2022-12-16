@@ -65,14 +65,32 @@
     cursor: pointer;
 }
 
-.cancelBtn{
-    background-color: crimson;
-}
-
-
 .title h1{
     font-size: 25px;
     font-weight: bold;
     margin: 10px 0;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.options {
+    display: grid;
+    width: 700px;
+    height: 300px;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+    grid-gap: 15px 15px;
+    margin: 10px;
+    background: yellow;
+    align-items: center;
+}
+
+.options li{
+    background: cornflowerblue;
+    text-align: center;
+    padding: 15px;
 }
 

@@ -7,9 +7,12 @@ import {
   SAVE_USER,
   GET_ONE_USER,
   UPDATE_USER,
+  GET_QUESTIONS
 } from "../actions/actionsTypes";
 
-const initialState = {};
+const initialState = {
+  questions: []
+};
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -17,6 +20,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case GET_QUESTIONS: 
+    return {
+      ...state,
+      questions: action.payload
+    }
     default:
       return {
         ...state,

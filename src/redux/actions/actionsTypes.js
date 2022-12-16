@@ -6,3 +6,4 @@ export const CLEAR_USER = "CLEAR_USER";
 export const SAVE_USER = "SAVE_USER";
 export const GET_ONE_USER = "GET_ONE_USER";
 export const UPDATE_USER = "UPDATE_USER";
+export const GET_QUESTIONS = "GET_QUESTIONS";
