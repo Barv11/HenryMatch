@@ -1,7 +1,9 @@
 import React from "react";
 import s from "./Modal.module.css";
 
-function Modal({ closeModal }) {
+
+function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
+  console.log(answers)
   return (
     <div className={s.modalBackground}>
       <div className={s.modalContainer}>
@@ -16,12 +18,14 @@ function Modal({ closeModal }) {
           </button>
         </div>
         <div className={s.title}>
-          <h1>Are you sure you want to continue?</h1>
+          <h1>{question}</h1>
         </div>
         <div className={s.body}>
-          <p>
-            The next page is awesome you should move forward, you will enjoy it.
-          </p>
+          <ul className={s.options}>
+            {answers?.map(e => {
+              return (<li>{e}</li>)
+            })}
+          </ul>
         </div>
         <div className={s.footer}>
           <button
@@ -29,10 +33,10 @@ function Modal({ closeModal }) {
               closeModal(false);
             }}
             className={s.cancelBtn}
-          >
-            Cancel
-          </button>
-          <button>Continue</button>
+
+            style={{"background": "red" }}
+          > Cancel </button>
+          <button onClick={() => nextHandler()}>Continue</button>
         </div>
       </div>
     </div>

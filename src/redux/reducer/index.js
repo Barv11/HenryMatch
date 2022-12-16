@@ -8,6 +8,7 @@ import {
   GET_ONE_USER,
   SEARCH_USER,
   UPDATE_USER,
+  GET_QUESTIONS,
   GET_COUNTRIES,
   GET_COUNTRY_STATES,
 } from "../actions/actionsTypes";
@@ -17,6 +18,7 @@ const initialState = {
   message: "",
   countries: [],
   states: [],
+  questions: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -46,6 +48,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         states: action.payload,
       };
+    case GET_QUESTIONS: 
+    return {
+      ...state,
+      questions: action.payload
+    }
     default:
       return {
         ...state,

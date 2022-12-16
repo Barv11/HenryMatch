@@ -8,6 +8,7 @@ import {
   SEARCH_USER,
   GET_ONE_USER,
   UPDATE_USER,
+  GET_QUESTIONS,
   GET_COUNTRIES,
   GET_COUNTRY_STATES,
 } from "./actionsTypes";
@@ -19,15 +20,38 @@ let urlcountries = "https://www.universal-tutorial.com/api";
 let tokenAPiCountries =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhc2tAdW5pdmVyc2FsLXR1dG9yaWFsLmNvbSIsImFwaV90b2tlbiI6IlQ2VlBOUmZXbkxFbmdsMHd2djctZ1d2Y09KRHFPSkptc3ZoNkNOdGo5a3p1Z1RSYkhvdXVET1NXeTdzYmJzdG5taDAifSwiZXhwIjoxNjcxMTYxMDExfQ.JRXypmKbBg3PFFb8eT40dpK09zbQFF16CZLVJv_6X7A";
 
-export const saveUser = (token) => async (dispatch) => {
-  try {
-    const response = (await axios.post(`${url}/user/save`, {}, header(token)))
-      .data;
-    dispatch({ type: SAVE_USER, payload: response });
-  } catch (error) {
-    console.log(error.message);
-  }
+export const saveUser = ({token, user}) => async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${url}/user/save`,
+        user,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    dispatch({ type: SAVE_USER, payload: user });
+    console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
 };
+
+export const getQuestions = () => async (dispatch) => {
+  const dataQuestions = await axios.get(`${url}/questions`)
+  dispatch({type: GET_QUESTIONS, payload: dataQuestions.data})
+}
+
+// export const saveUser = (token) => async (dispatch) => {
+//   try {
+//     const response = (await axios.post(`${url}/user/save`, {}, header(token)))
+//       .data;
+//     dispatch({ type: SAVE_USER, payload: response });
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 export const searchUser = (token) => async (dispatch) => {
   try {
@@ -102,3 +126,4 @@ export const getCountryStates = (state) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
