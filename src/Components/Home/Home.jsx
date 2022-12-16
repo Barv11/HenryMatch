@@ -5,10 +5,21 @@ import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import s from "./Home.module.css";
 import Modal from '../Modal/Modal';
 import { useState } from "react";
-
-
+import { useSelector, useDispatch } from 'react-redux';
+import { getQuestions } from '../../redux/actions/index';
+import ModalData from "../Modal/ModalData";
 export default function Home() {
+
   const [openModal, setOpenModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getQuestions())
+  },[])
+
+  
+  // console.log(questionsData)
   // const { getAccessTokenSilently } = useAuth0();
 
   // const handleOnClick = async () => {
@@ -34,7 +45,8 @@ export default function Home() {
       <p>Para conocer tus intereses y poder conectar con otros Henry's que compartan tus gustos porfavor completa el formulario ingresado al boton.</p>
       <button 
       onClick={() => {setOpenModal(true)}}> Open </button>
-      {openModal && <Modal closeModal={setOpenModal}/>}
+      {openModal && <ModalData closeModal={setOpenModal}/>}
+      <div>{openModal.toString()}</div>
       {/* <button onClick={handleOnClick}>API</button> */}
       {/* <UpdateProfile /> */}
     </section>

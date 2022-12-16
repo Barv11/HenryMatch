@@ -8,6 +8,7 @@ import {
   SEARCH_USER,
   GET_ONE_USER,
   UPDATE_USER,
+  GET_QUESTIONS
   GET_COUNTRIES,
   GET_COUNTRY_STATES,
 } from "./actionsTypes";
@@ -18,6 +19,29 @@ let url = "http://localhost:3001";
 let urlcountries = "https://www.universal-tutorial.com/api";
 let tokenAPiCountries =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJtYXRlbWF0aWNhX2JyeWFuQGhvdG1haWwuY29tIiwiYXBpX3Rva2VuIjoiSnpaTzdVWm1sdzlOZ0pnNnpwT0RLYWVIMVhsSkFZWldOakNjbExkSXdTcERSQWJyaVJWNk9TVlE5VUxQNU9PRjJRUSJ9LCJleHAiOjE2NzA5NDU4NDl9.Uk1KomU1BEEeowq8sJTiTsg4YV1X4_CZvRyagR33ZzQ";
+
+export const saveUser = ({token, user}) => async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${url}/user/save`,
+        user,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    dispatch({ type: SAVE_USER, payload: user });
+    console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+};
+
+export const getQuestions = () => async (dispatch) => {
+  const dataQuestions = await axios.get(`${url}/questions`)
+  dispatch({type: GET_QUESTIONS, payload: dataQuestions.data})
+}
 
 export const saveUser = (token) => async (dispatch) => {
   try {
@@ -101,3 +125,4 @@ export const getCountryStates = (state) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
