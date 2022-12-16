@@ -17,7 +17,7 @@ import header from "./header";
 let url = "http://localhost:3001";
 let urlcountries = "https://www.universal-tutorial.com/api";
 let tokenAPiCountries =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJtYXRlbWF0aWNhX2JyeWFuQGhvdG1haWwuY29tIiwiYXBpX3Rva2VuIjoiSnpaTzdVWm1sdzlOZ0pnNnpwT0RLYWVIMVhsSkFZWldOakNjbExkSXdTcERSQWJyaVJWNk9TVlE5VUxQNU9PRjJRUSJ9LCJleHAiOjE2NzA5NDU4NDl9.Uk1KomU1BEEeowq8sJTiTsg4YV1X4_CZvRyagR33ZzQ";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhc2tAdW5pdmVyc2FsLXR1dG9yaWFsLmNvbSIsImFwaV90b2tlbiI6IlQ2VlBOUmZXbkxFbmdsMHd2djctZ1d2Y09KRHFPSkptc3ZoNkNOdGo5a3p1Z1RSYkhvdXVET1NXeTdzYmJzdG5taDAifSwiZXhwIjoxNjcxMTYxMDExfQ.JRXypmKbBg3PFFb8eT40dpK09zbQFF16CZLVJv_6X7A";
 
 export const saveUser = (token) => async (dispatch) => {
   try {
@@ -50,21 +50,22 @@ export const updateUser = (token, data) => async (dispatch) => {
   }
 };
 
-export const getTokenApiCountries = () => async (dispatch) => {
-  try {
-    const response = (
-      await axios.get(`${urlcountries}/getaccesstoken`, {
-        Accept: "application/json",
-        "api-token":
-          "JzZO7UZmlw9NgJg6zpODKaeH1XlJAYZWNjCclLdIwSpDRAbriRV6OSVQ9ULP5OOF2QQ",
-        "user-email": "matematica_bryan@hotmail.com",
-      })
-    ).data;
-    dispatch({ type: GET_COUNTRIES });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// export const getCountries = () => async (dispatch) => {
+//   try {
+//     const response = (
+//       await axios.get(`${urlcountries}/getaccesstoken`, {
+//         Accept: "application/json",
+//         "api-token":
+//           "JzZO7UZmlw9NgJg6zpODKaeH1XlJAYZWNjCclLdIwSpDRAbriRV6OSVQ9ULP5OOF2QQ",
+//         "user-email": "matematica_bryan@hotmail.com",
+//       })
+//     ).data;
+//     console.log(response);
+//     dispatch({ type: GET_COUNTRIES });
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 export const getCountries = () => async (dispatch) => {
   try {

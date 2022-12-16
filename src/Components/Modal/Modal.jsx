@@ -6,11 +6,14 @@ function Modal({ closeModal }) {
     <div className={s.modalBackground}>
       <div className={s.modalContainer}>
         <div className={s.titleCloseBtn}>
-        <button
-          className={s.btn}
-          onClick={() => {
-            closeModal(false);
-          }}> X </button>
+          <button
+            className={s.btn}
+            onClick={() => {
+              closeModal(false);
+            }}
+          >
+            ✖
+          </button>
         </div>
         <div className={s.title}>
           <h1>Are you sure you want to continue?</h1>
@@ -23,9 +26,12 @@ function Modal({ closeModal }) {
         <div className={s.footer}>
           <button
             onClick={() => {
-              closeModal(false); }}
+              closeModal(false);
+            }}
             className={s.cancelBtn}
-          > Cancel </button>
+          >
+            Cancel
+          </button>
           <button>Continue</button>
         </div>
       </div>

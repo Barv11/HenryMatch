@@ -7,11 +7,20 @@
 }
 
 .btn{
+    cursor: pointer;
     text-decoration: none;
-    background-color: #f9d401;
-    padding: 15px;
+    font-family: var(--fontGlobal);
+    font-size: 1rem;
+    letter-spacing: .2em;
+    background-color: #ffffff;
+    border: none;
+    padding: .6em 4em;
     border-radius: 5px;
     color: black;
-    margin: 25px;
+    transition: background-color .2s, color .2s;
+}
 
+.btn:hover {
+    background-color: black;
+    color: white;
 }
