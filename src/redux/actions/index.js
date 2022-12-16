@@ -8,7 +8,7 @@ import {
   SEARCH_USER,
   GET_ONE_USER,
   UPDATE_USER,
-  GET_QUESTIONS
+  GET_QUESTIONS,
   GET_COUNTRIES,
   GET_COUNTRY_STATES,
 } from "./actionsTypes";
@@ -43,15 +43,15 @@ export const getQuestions = () => async (dispatch) => {
   dispatch({type: GET_QUESTIONS, payload: dataQuestions.data})
 }
 
-export const saveUser = (token) => async (dispatch) => {
-  try {
-    const response = (await axios.post(`${url}/user/save`, {}, header(token)))
-      .data;
-    dispatch({ type: SAVE_USER, payload: response });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// export const saveUser = (token) => async (dispatch) => {
+//   try {
+//     const response = (await axios.post(`${url}/user/save`, {}, header(token)))
+//       .data;
+//     dispatch({ type: SAVE_USER, payload: response });
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 export const searchUser = (token) => async (dispatch) => {
   try {
