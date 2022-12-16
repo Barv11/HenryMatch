@@ -1,33 +1,31 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-// import s from "./Login.module.css";
 
 const BootstrapButton = styled(Button)({
   boxShadow: "rgb(0 0 0 / 30%) 0px 1px 2px, rgb(0 0 0 / 15%) 0px 1px 3px 1px",
   textTransform: "none",
+  whiteSpace: "nowrap",
   color: "black",
-  width: "80%",
   fontSize: "1rem",
   padding: "3px 16px",
   letterSpacing: "0",
   border: "none",
-  backgroundColor: "#ffff01",
+  backgroundColor: "white",
   fontFamily: ["Montserrat", "sans-serif"].join(","),
   "&:hover": {
-    backgroundColor: "#d8d800",
+    backgroundColor: "#000000",
+    color: "#ffffff",
     borderColor: "none",
     boxShadow: "none",
   },
 });
 
-export default function Login() {
-  const { loginWithRedirect } = useAuth0();
+export default function ButtonData(props) {
   return (
     <>
-      <BootstrapButton onClick={loginWithRedirect} variant="contained">
-        Log in
+      <BootstrapButton onClick={props?.onClick} variant="contained">
+        Agregar datos adicionales
       </BootstrapButton>
     </>
   );
