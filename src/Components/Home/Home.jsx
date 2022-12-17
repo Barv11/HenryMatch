@@ -48,7 +48,7 @@ export default function Home() {
         compartan tus gustos porfavor completa el formulario ingresado al boton.
       </p>
       <ButtonText text={"Open"} onClick={() => setOpenModal(true)} />
-      {openModal && <Modal closeModal={setOpenModal} />}
+      {openModal && <ModalData closeModal={setOpenModal} />}
       {/* <Prueba /> */}
     </section>
   );

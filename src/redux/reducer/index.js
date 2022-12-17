@@ -52,7 +52,7 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       questions: action.payload
-    }
+    };
     default:
       return {
         ...state,

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Modal.module.css";
 
 
 function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
-  console.log(answers)
+  
+  const [arrayAnswers, setArrayAnswers] = useState([]);
+
+
+  const saveAnswers = (e) => {
+    // e.preventDefault();
+    setArrayAnswers((lastAnswers) => [...lastAnswers,e.target.value ])
+  }
+  console.log(arrayAnswers)
   return (
     <div className={s.modalBackground}>
       <div className={s.modalContainer}>
@@ -23,7 +31,7 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
         <div className={s.body}>
           <ul className={s.options}>
             {answers?.map(e => {
-              return (<li>{e}</li>)
+              return (<li><button value={e} onClick={saveAnswers}>{e}</button></li>)
             })}
           </ul>
         </div>
@@ -38,6 +46,7 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
           > Cancel </button>
           <button onClick={() => nextHandler()}>Continue</button>
         </div>
+        <div>{arrayAnswers}</div>
       </div>
     </div>
   );
