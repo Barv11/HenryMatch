@@ -4,7 +4,6 @@ import Modal from "../Modal/Modal";
 import { useState } from "react";
 import ButtonText from "./ButtonText/ButtonText";
 import Prueba from "./Prueba/Prueba";
-
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions } from '../../redux/actions/index';
 import ModalData from "../Modal/ModalData";
@@ -21,23 +20,6 @@ export default function Home() {
 
   
   // console.log(questionsData)
-  // const { getAccessTokenSilently } = useAuth0();
-
-  // const handleOnClick = async () => {
-  //   try {
-  //     const token = await getAccessTokenSilently();
-  //     const user = (
-  //       await axios.get("http://localhost:3001/user/get", {
-  //         headers: {
-  //           authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //     ).data;
-  //     console.log(user);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
 
   return (
     <section className={s.container}>

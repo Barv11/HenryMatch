@@ -22,6 +22,7 @@ export default function LandingPage() {
   }, [isAuthenticated]);
 
   useEffect(() => {
+    console.log(userCurrent)
     if (Object.entries(userCurrent).length) {
       navigate("/match");
     }
