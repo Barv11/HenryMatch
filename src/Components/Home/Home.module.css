@@ -1,26 +1,13 @@
 .container {
-    
+    display: flex;justify-content: center;align-items: center;
+    flex-flow: column nowrap;gap: 1em;
 }
 
 .container > h1 {
     font-size: 5rem;
 }
 
-.btn{
-    cursor: pointer;
-    text-decoration: none;
-    font-family: var(--fontGlobal);
-    font-size: 1rem;
-    letter-spacing: .2em;
-    background-color: #ffffff;
-    border: none;
-    padding: .6em 4em;
-    border-radius: 5px;
-    color: black;
-    transition: background-color .2s, color .2s;
-}
-
-.btn:hover {
-    background-color: black;
-    color: white;
+.container > p {
+    text-align: center;
+    padding: 0 4em;
 }
