@@ -8,8 +8,12 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
 
 
   const saveAnswers = (e) => {
-    // e.preventDefault();
-    setArrayAnswers((lastAnswers) => [...lastAnswers,e.target.value ])
+    e.preventDefault();
+    if(!arrayAnswers.includes(e.target.value)){
+      setArrayAnswers((lastAnswers) => [...lastAnswers,e.target.value ])
+    } else {
+      setArrayAnswers(arrayAnswers.filter(value => value !== e.target.value))
+    }
   }
   console.log(arrayAnswers)
   return (
@@ -31,7 +35,7 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
         <div className={s.body}>
           <ul className={s.options}>
             {answers?.map(e => {
-              return (<li><button value={e} onClick={saveAnswers}>{e}</button></li>)
+              return (<li><button value={e} onClick={saveAnswers} className={s.btnSelector}>{e}</button></li>)
             })}
           </ul>
         </div>
@@ -44,7 +48,7 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
 
             style={{"background": "red" }}
           > Cancel </button>
-          <button onClick={() => nextHandler()}>Continue</button>
+          <button onClick={() => nextHandler(arrayAnswers)}>Continue</button>
         </div>
         <div>{arrayAnswers}</div>
       </div>
