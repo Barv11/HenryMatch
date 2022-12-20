@@ -12,7 +12,7 @@ function ModalData({closeModal}) {
 
     const [ currentPage, setCurrentPage] = useState(0)
 
-    const nextHandler = () => {
+    const nextHandler = (props) => {
         const totalItems = questionsData.length;
 
         const nextPage = currentPage + 1;
@@ -22,8 +22,12 @@ function ModalData({closeModal}) {
         if(firstIndex === totalItems) return;
 
         setItems([...questionsData].splice(firstIndex,itemsPerPage))
-
+      if(props.length > 1){
         setCurrentPage(nextPage)
+      }  else {
+        alert('debes elegir algun tipo')
+
+      }
         console.log('next')
     }
 
