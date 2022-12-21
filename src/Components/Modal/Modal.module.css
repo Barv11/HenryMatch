@@ -82,15 +82,13 @@
     width: 700px;
     height: 300px;
     grid-template: repeat(4, 1fr) / repeat(4, 1fr);
-    grid-gap: 15px 15px;
-    margin: 10px;
-    background: yellow;
+    grid-gap: 0 10px;
     align-items: center;
 }
 
 .options li{
     text-align: center;
-    padding: 15px;
+    padding: 5px;
 }
 
 .btnSelector {

@@ -6,7 +6,6 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
   
   const [arrayAnswers, setArrayAnswers] = useState([]);
 
-
   const saveAnswers = (e) => {
     e.preventDefault();
     if(!arrayAnswers.includes(e.target.value)){
@@ -39,6 +38,7 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
             })}
           </ul>
         </div>
+        <div>{arrayAnswers}</div>
         <div className={s.footer}>
           <button
             onClick={() => {
@@ -50,7 +50,6 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
           > Cancel </button>
           <button onClick={() => nextHandler(arrayAnswers)}>Continue</button>
         </div>
-        <div>{arrayAnswers}</div>
       </div>
     </div>
   );
