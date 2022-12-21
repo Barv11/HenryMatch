@@ -45,8 +45,6 @@ function ModalData({ closeModal }) {
     }
   };
 
-  
-
   return (
     <div>
       <div>Hola</div>

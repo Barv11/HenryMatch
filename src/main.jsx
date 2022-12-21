@@ -10,16 +10,17 @@ import store from "./redux/store";
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Auth0Provider
         domain={domain}
         clientId={clientId}
-        redirectUri={window.location.origin}
+        redirectUri={window.location.origin + '/welcome'}
         audience="http://localhost:3001/barv"
         scope="openid profile email"
-      >
+      > 
         <App />
       </Auth0Provider>
     </BrowserRouter>

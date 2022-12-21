@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import s from "./Modal.module.css";
 
-
-function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
-  
+function Modal({
+  closeModal,
+  question,
+  id,
+  answers,
+  nextHandler,
+  prevHandler,
+}) {
   const [arrayAnswers, setArrayAnswers] = useState([]);
+  
+  const handleClose = () => {
+    closeModal(false);
+  };
 
   const saveAnswers = (e) => {
     e.preventDefault();
@@ -14,19 +23,13 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
       setArrayAnswers(arrayAnswers.filter(value => value !== e.target.value))
     }
   }
-  console.log(arrayAnswers)
+  console.log(arrayAnswers);
+  
   return (
     <div className={s.modalBackground}>
       <div className={s.modalContainer}>
         <div className={s.titleCloseBtn}>
-          <button
-            className={s.btn}
-            onClick={() => {
-              closeModal(false);
-            }}
-          >
-            ✖
-          </button>
+          <button onClick={handleClose}>✖</button>
         </div>
         <div className={s.title}>
           <h1>{question}</h1>
@@ -45,7 +48,6 @@ function Modal({ closeModal, question,id, answers, nextHandler, prevHandler }) {
               closeModal(false);
             }}
             className={s.cancelBtn}
-
             style={{"background": "red" }}
           > Cancel </button>
           <button onClick={() => nextHandler(arrayAnswers)}>Continue</button>

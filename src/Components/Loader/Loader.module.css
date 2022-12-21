@@ -1,8 +1,19 @@
 .container {
   width: 100%;
+  min-height: 300px;
   display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+}
+
+.container > p {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  text-shadow: 0 0 1px #000000, 0 0 2px #000000, 0 0 3px #000000,
+    0 0 4px #000000, 0 0 5px #000000, 0 0 25px #000000, 0 0 50px #ffff00;
 }
 
 .ldsEllipsis {
@@ -17,7 +28,8 @@
   height: 13px;
   border-radius: 50%;
   background: rgb(255, 217, 0);
-  filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.253)) drop-shadow(0 0 3px rgba(255, 255, 0, 0.527));
+  filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.253))
+    drop-shadow(0 0 3px rgba(255, 255, 0, 0.527));
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 

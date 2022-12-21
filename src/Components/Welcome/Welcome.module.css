@@ -1,0 +1,49 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  color: white;
+}
+
+.p1 {
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+.p1 > b {
+  color: yellow;
+  font-weight: 600;
+}
+
+.p2 {
+  font-size: 1rem;
+  display: flex;
+
+  /* font-family: monospace;
+  white-space: nowrap;
+  width: 45ch;
+  border-right: 3px solid;
+
+  animation: typing 2s steps(30), blink 0.5s infinite step-end alternate;
+  overflow: hidden; */
+}
+
+.sus {
+  display: block;
+  font-family: monospace;
+  white-space: nowrap;
+  width: 4ch;
+  animation: typing 2s steps(4) infinite;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}

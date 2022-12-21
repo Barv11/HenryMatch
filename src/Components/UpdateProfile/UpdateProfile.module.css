@@ -9,7 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
   backdrop-filter: blur(0);
   animation: blur 1s forwards;
 }
@@ -55,7 +54,6 @@
   align-content: center;
   box-shadow: 0px 3px 5px -10px #00000081, 0px 2px 10px 0px #00000094,
     0px 1px 10px 0px #000000b7;
-  opacity: 0;
   transform: translateY(-200%);
   animation: render 1s forwards;
 }
