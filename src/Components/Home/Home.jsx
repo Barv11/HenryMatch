@@ -36,7 +36,7 @@ export default function Home() {
           </p>
           <ButtonText text={"Empezar"} onClick={handleFormInterest} />
           {openModal && <ModalData closeModal={setOpenModal} />}
-          <Prueba />
+          {/* <Prueba /> */}
         </section>
         <section className={s.cont_right}>
           <img src="/image.webp" alt="image" />
