@@ -10,16 +10,21 @@ function Modal({
   prevHandler,
 }) {
   const [arrayAnswers, setArrayAnswers] = useState([]);
-
+  
   const handleClose = () => {
     closeModal(false);
   };
 
   const saveAnswers = (e) => {
-    // e.preventDefault();
-    setArrayAnswers((lastAnswers) => [...lastAnswers, e.target.value]);
-  };
+    e.preventDefault();
+    if(!arrayAnswers.includes(e.target.value)){
+      setArrayAnswers((lastAnswers) => [...lastAnswers,e.target.value ])
+    } else {
+      setArrayAnswers(arrayAnswers.filter(value => value !== e.target.value))
+    }
+  }
   console.log(arrayAnswers);
+  
   return (
     <div className={s.modalBackground}>
       <div className={s.modalContainer}>
@@ -31,31 +36,22 @@ function Modal({
         </div>
         <div className={s.body}>
           <ul className={s.options}>
-            {answers?.map((e) => {
-              return (
-                <li>
-                  <button value={e} onClick={saveAnswers}>
-                    {e}
-                  </button>
-                </li>
-              );
+            {answers?.map(e => {
+              return (<li><button value={e} onClick={saveAnswers} className={s.btnSelector}>{e}</button></li>)
             })}
           </ul>
         </div>
+        <div>{arrayAnswers}</div>
         <div className={s.footer}>
           <button
             onClick={() => {
               closeModal(false);
             }}
             className={s.cancelBtn}
-            style={{ background: "red" }}
-          >
-            {" "}
-            Cancel{" "}
-          </button>
-          <button onClick={() => nextHandler()}>Continue</button>
+            style={{"background": "red" }}
+          > Cancel </button>
+          <button onClick={() => nextHandler(arrayAnswers)}>Continue</button>
         </div>
-        <div>{arrayAnswers}</div>
       </div>
     </div>
   );

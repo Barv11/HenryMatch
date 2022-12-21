@@ -13,7 +13,21 @@ function ModalData({ closeModal }) {
 
   const [currentPage, setCurrentPage] = useState(0);
 
-  const nextHandler = () => {
+  const [questionsSave, setQuestionsSave] = useState({
+    quest1: [],
+    quest2: [],
+    quest3: [],
+    quest4: [],
+    quest5: [],
+    quest6: [],
+    quest7: [],
+    quest8: [],
+    quest9: [],
+    quest10: [],
+  });
+
+  const nextHandler = (props) => {
+    console.log(props)
     const totalItems = questionsData.length;
 
     const nextPage = currentPage + 1;
@@ -22,15 +36,15 @@ function ModalData({ closeModal }) {
 
     if (firstIndex === totalItems) return;
 
-    setItems([...questionsData].splice(firstIndex, itemsPerPage));
+    if (props.length > 0) {
+      setItems([...questionsData].splice(firstIndex, itemsPerPage));
+      setCurrentPage(nextPage);
 
-    setCurrentPage(nextPage);
-    console.log("next");
+    } else {
+      alert("Selecciona al menos uno");
+    }
   };
 
-  const prevHandler = () => {
-    console.log("prev");
-  };
   return (
     <div>
       <div>Hola</div>
@@ -46,7 +60,6 @@ function ModalData({ closeModal }) {
                 answers={e.answers}
                 currentPage={currentPage}
                 nextHandler={nextHandler}
-                prevHandler={prevHandler}
               />
             );
           })}
