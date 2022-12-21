@@ -1,17 +1,31 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
+
 import Logout from "../Logout/Logout";
-import { UilUser } from "@iconscout/react-unicons";
+import Login from "../Login/Login";
+import UpdateProfile from "../UpdateProfile/UpdateProfile";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+
 import s from "./Nav.module.css";
-import UpdateProfile from "../UpdateProfile/UpdateProfile";
 
 export default function Nav() {
+  const dispatch = useDispatch();
+  const [warning, setWarning] = useState(false);
+  const [classWarning, setClassWarning] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const userCurrent = useSelector((state) => state.userCurrent);
+  const isLogged = useSelector((state) => state.isLogged);
+
+  const handleWarning = () => {
+    setClassWarning(true);
+    setTimeout(() => {
+      setWarning(false);
+    }, 1000);
+  };
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -22,13 +36,31 @@ export default function Nav() {
     setAnchorEl(null);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setWarning(true);
+    }, 5000);
+  }, []);
+
   return (
     <>
+      {!isLogged ? (
+        warning ? (
+          <section
+            className={`${s.anuncio} ${classWarning ? s.warning : null}`}
+          >
+            Por favor, regístrate para poder disfrutar los beneficios de la
+            plataforma.
+            <span onClick={handleWarning}>✖</span>
+          </section>
+        ) : null
+      ) : null}
       <header className={s.container}>
-        <span className={s.logo}>
-          <img src="/logohenry.webp" alt="Henry" />| Match
-        </span>
         <nav className={s.navbar}>
+          <NavLink to={"/match"} className={s.linklogo}>
+            <img src="/logohenry.webp" alt="Henry" />
+          </NavLink>
+          <span>|</span>
           <NavLink to={"/match"} className={s.link}>
             <Button color="inherit">
               <span className={s.menu}>Inicio</span>
@@ -40,7 +72,7 @@ export default function Nav() {
             </Button>
           </NavLink>
         </nav>
-        {userCurrent && Object.entries(userCurrent).length ? (
+        {Object.entries(userCurrent).length ? (
           <section
             className={s.user}
             onClick={handleClick}
@@ -54,11 +86,8 @@ export default function Nav() {
             <img src={userCurrent.picture} alt={userCurrent.name} />
           </section>
         ) : (
-          <section className={s.user}>
-            <span>
-              <UilUser />
-            </span>
-            <Logout />
+          <section className={s.logs}>
+            <Login />
           </section>
         )}
         <Menu

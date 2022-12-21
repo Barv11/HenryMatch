@@ -1,20 +1,31 @@
+.anuncio {
+  position: relative;
+  padding: 0.5em;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: all 1s;
+}
+
+.warning {
+  background-color: #000000;
+  height: 0;
+  font-size: 0;
+  /* transform-origin: top; */
+}
+
+.anuncio > span {
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+}
+
 .container {
-  /* width: 100%; */
-  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5em 1em;
-  background-color: rgb(0, 0, 0);
+  background-color: #000000;
   color: white;
-}
-
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5em;
-  font-size: 1.6rem;
 }
 
 .navbar {
@@ -22,7 +33,25 @@
   justify-content: center;
   align-items: center;
   flex-flow: row nowrap;
-  gap: 2em;
+  gap: 1em;
+}
+
+.linklogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linklogo > img {
+  aspect-ratio: auto 16 / 3;
+  width: 100px;
+  /* border-radius: 10px; */
+  filter: brightness(1);
+  transition: filter 0.3s;
+}
+
+.linklogo:hover > img {
+  filter: brightness(0.5);
 }
 
 .link {
@@ -62,23 +91,6 @@
   font-size: 1.4rem;
 }
 
-.user > span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 40px;
-  height: 40px;
-  outline: 2px solid #fffb00;
-  border-radius: 50%;
-}
-
-.user > span > svg {
-  width: 35px;
-  height: 35px;
-  fill: #e4e4e4;
-}
-
 .user > img {
   width: 40px;
   height: 40px;
@@ -98,10 +110,18 @@
     drop-shadow(0 0 3px rgba(255, 255, 0, 0.527));
 }
 
+.logs {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .menu {
   color: white;
   font-size: 1rem;
   font-family: var(--fontGlobal);
+  text-transform: initial;
 }
 
 .drop {
@@ -112,25 +132,10 @@
 
 .body {
   position: relative;
-  min-height: calc(100vh - 66px);
+  min-height: 700px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   background-color: #414141;
   color: #e4e4e4;
 }
-
-/* .body::after {
-  position: absolute;
-  z-index: 1;
-  content: "";
-  width: 100%;
-  height: 40%;
-  top: 0;
-  background: linear-gradient(
-    0deg,
-    #ece6e6 0%,
-    #ece6e6 50%,
-    #ffd900 100%
-  );
-} */
