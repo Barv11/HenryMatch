@@ -27,16 +27,15 @@ function App() {
   useEffect(async () => {
     if (!Object.entries(userCurrent).length && isAuthenticated) {
       const token = await getAccessTokenSilently();
+      dispatch(getQuestions(token));
       dispatch(searchUser(token));
     }
     dispatch(setRegistered(isAuthenticated));
   }, [isAuthenticated]);
 
-  useEffect(async () => {
-    const token = await getAccessTokenSilently();
-    dispatch(getQuestions(token));
-    // dispatch(getCountries());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getCountries());
+  // }, []);
 
   console.log(message);
   return (

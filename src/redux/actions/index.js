@@ -49,18 +49,14 @@ export const searchUser = (token) => async (dispatch) => {
   }
 };
 
-export const searchUserById =
-  ({ token, id }) =>
-  async (dispatch) => {
-    try {
-      const userHenry = (
-        await axios.get(`${url}/user/search/${id}`, header(token))
-      ).data;
-      dispatch({ type: SEARCH_USER_BY_ID, payload: userHenry });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+export const searchUserById = (id) => async (dispatch) => {
+  try {
+    const userHenry = (await axios.get(`${url}/user/search/${id}`)).data;
+    dispatch({ type: SEARCH_USER_BY_ID, payload: userHenry });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 export const clearUser = () => (dispatch) => {
   dispatch({ type: CLEAR_USER, payload: {} });

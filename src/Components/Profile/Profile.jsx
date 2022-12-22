@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import {
   UilGithub,
   UilLinkedin,
@@ -10,32 +10,24 @@ import {
 } from "@iconscout/react-unicons";
 import Rocket from "./Rocket/Rocket";
 import Loader from "../Loader/Loader";
-import { clearUser, searchUser, searchUserById } from "../../redux/actions";
+import { clearUser, searchUserById } from "../../redux/actions";
 import s from "./Profile.module.css";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { getAccessTokenSilently } = useAuth0();
+  // const { getAccessTokenSilently } = useAuth0(); //
   const [current, setCurrent] = useState({});
   const user = useSelector((state) => state.userCurrent);
   const henry = useSelector((state) => state.userHenry);
   const { id } = useParams();
 
   useEffect(async () => {
-    const token = await getAccessTokenSilently();
-
-    dispatch(clearUser());
-
     setTimeout(async () => {
       if (id) {
-        dispatch(searchUserById({ token, id }));
+        dispatch(searchUserById(id));
       }
-    }, 1000);
-
-    return () => {
-      dispatch(clearUser());
-    };
+    }, 3000);
   }, [location]);
 
   useEffect(() => {
@@ -47,6 +39,12 @@ export default function Profile() {
       setCurrent(user);
     }
   }, [henry, user]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearUser());
+    };
+  }, []);
 
   if (!Object.entries(current).length) {
     return <Loader text="Buscando un Henry" />;
