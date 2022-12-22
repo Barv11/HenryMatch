@@ -10,7 +10,7 @@ export default function Prueba() {
   const handleOnClick = async () => {
     const token = await getAccessTokenSilently();
     dispatch(getAllUsers(token));
-    dispatch(searchUserById({ token, id: 3 }));
+    dispatch(searchUserById(3));
   };
 
   return (
