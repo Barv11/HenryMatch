@@ -7,10 +7,12 @@ import ModalData from "../Modal/ModalData";
 import InviteLogin from "../InviteLogin/InviteLogin";
 
 import s from "./Home.module.css";
+import InterestForm from "../InterestsForm/InterestForm";
 
 export default function Home() {
   const [openModal, setOpenModal] = useState(false);
   const [openInvit, setOpenInvit] = useState(false);
+  const [openFormInt, setOpenFormInt] = useState(true);
 
   const isLogged = useSelector((state) => state.isLogged);
 
@@ -35,12 +37,17 @@ export default function Home() {
             en el mundo IT.
           </p>
           <ButtonText text={"Empezar"} onClick={handleFormInterest} />
-          {openModal && <ModalData closeModal={setOpenModal} />}
+          <ButtonText
+            text={"Go to form / Test"}
+            onClick={() => setOpenFormInt(true)}
+          />
           <Prueba />
         </section>
         <section className={s.cont_right}>
           <img src="/image.webp" alt="image" />
         </section>
+        {openModal && <ModalData closeModal={setOpenModal} />}
+        {openFormInt && <InterestForm setOpenFormInt={setOpenFormInt} />}
         {openInvit && <InviteLogin setOpenInvit={setOpenInvit} />}
       </section>
     </>
