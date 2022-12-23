@@ -195,7 +195,7 @@
 .facts_h2 > h2 > span {
   color: #440041;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
 }
 
 .answers {
@@ -207,13 +207,14 @@
 
 .answers > span {
   font-style: italic;
+  font-size: 0.9rem;
   font-weight: 500;
-  background-color: rgba(128, 128, 128, 0.13);
-  padding: .5em 1em;
+  background-color: #3700ff21;
+  padding: 0.5em 1em;
   border-radius: 5px;
 }
 
 .answers > b {
-    font-style: italic;
-  font-weight: 500; 
+  font-style: italic;
+  font-weight: 500;
 }
