@@ -16,7 +16,8 @@ import {
 
 let url = "http://localhost:3001";
 let urlcountries = "https://www.universal-tutorial.com/api";
-let tokenAPiCountries = " ";
+let tokenAPiCountries =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhc2tAdW5pdmVyc2FsLXR1dG9yaWFsLmNvbSIsImFwaV90b2tlbiI6IlQ2VlBOUmZXbkxFbmdsMHd2djctZ1d2Y09KRHFPSkptc3ZoNkNOdGo5a3p1Z1RSYkhvdXVET1NXeTdzYmJzdG5taDAifSwiZXhwIjoxNjcxOTIzMDAyfQ.rMoOd0wR444CZ_t1VYFJbNFYNeqmCHllqO_jZ6SG7ho";
 
 export const setRegistered = (boolean) => (dispatch) => {
   dispatch({ type: SET_REGISTERED, payload: boolean });
@@ -145,7 +146,7 @@ export const saveInterests =
       const response = (
         await axios.post(`${url}/user/interests`, data, header(token))
       ).data;
-      console.log(response)
+      console.log(response);
       dispatch({ type: SAVE_INTERESTS, payload: response });
     } catch (error) {
       console.log(error.message);

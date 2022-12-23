@@ -12,7 +12,7 @@ import NotFound from "../Components/NotFound/NotFound";
 import Profile from "../Components/Profile/Profile";
 import Welcome from "../Components/Welcome/Welcome";
 import {
-  // getCountries,
+  getCountries,
   getQuestions,
   searchUser,
   setRegistered,
@@ -34,9 +34,9 @@ function App() {
     dispatch(setRegistered(isAuthenticated));
   }, [isAuthenticated]);
 
-  // useEffect(() => {
-  //   dispatch(getCountries());
-  // }, []);
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   console.log(message);
   return (
