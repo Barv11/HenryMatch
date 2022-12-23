@@ -7,17 +7,17 @@ import ModalData from "../Modal/ModalData";
 import InviteLogin from "../InviteLogin/InviteLogin";
 
 import s from "./Home.module.css";
-import InterestForm from "../InterestsForm/InterestForm";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [openInvit, setOpenInvit] = useState(false);
-  const [openFormInt, setOpenFormInt] = useState(true);
 
   const isLogged = useSelector((state) => state.isLogged);
 
   const handleFormInterest = () => {
-    isLogged ? setOpenModal(true) : setOpenInvit(true);
+    isLogged ? navigate("/match/interest") : setOpenInvit(true);
   };
 
   useEffect(() => {
@@ -33,21 +33,16 @@ export default function Home() {
             Déjanos conocerte para poder mostrarte Henrys con tus intereses
           </h2>
           <p>
-            Empieza a conectar con Henrys que compartan tus gustos en intereses
+            Empieza a conectar con Henrys que compartan tus gustos e intereses
             en el mundo IT.
           </p>
           <ButtonText text={"Empezar"} onClick={handleFormInterest} />
-          <ButtonText
-            text={"Go to form / Test"}
-            onClick={() => setOpenFormInt(true)}
-          />
-          <Prueba />
+          {/* <Prueba /> */}
         </section>
         <section className={s.cont_right}>
           <img src="/image.webp" alt="image" />
         </section>
         {openModal && <ModalData closeModal={setOpenModal} />}
-        {openFormInt && <InterestForm setOpenFormInt={setOpenFormInt} />}
         {openInvit && <InviteLogin setOpenInvit={setOpenInvit} />}
       </section>
     </>

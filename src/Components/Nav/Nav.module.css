@@ -132,7 +132,8 @@
 
 .body {
   position: relative;
-  min-height: 700px;
+  min-height: 550px;
+  min-height: calc(100vh - 56px);
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;

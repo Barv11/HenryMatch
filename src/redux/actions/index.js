@@ -24,6 +24,7 @@ export const setRegistered = (boolean) => (dispatch) => {
 export const getAllUsers = (token) => async (dispatch) => {
   try {
     const allUsers = (await axios.get(`${url}/user/get`, header(token))).data;
+    console.log(allUsers.data);
     dispatch({ type: GET_ALL_USERS, payload: allUsers });
   } catch (error) {
     console.log(error);
