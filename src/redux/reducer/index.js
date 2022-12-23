@@ -9,6 +9,7 @@ import {
   GET_COUNTRIES,
   GET_COUNTRY_STATES,
   SET_REGISTERED,
+  SAVE_INTERESTS,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -78,6 +79,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         questions: action.payload,
       };
+      case SAVE_INTERESTS:
+        return {
+          ...state,
+          userCurrent: action.payload.data,
+          message: action.payload.status,
+        }
     default:
       return {
         ...state,

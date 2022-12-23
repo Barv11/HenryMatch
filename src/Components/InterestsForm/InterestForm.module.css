@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: calc(100vh - 56px);
+  min-height: calc(100vh - 56px);
   background-image: linear-gradient(to right, #000000d7, #000000d7),
     url("../../../public/backgroundhenry.jpg");
   background-position: center;
@@ -13,7 +13,8 @@
 
 .container_div {
   width: 100%;
-  height: 70%;
+  /* height: 70%; */
+  margin: 2em 0;
   display: flex;
   justify-content: center;
 }
@@ -23,7 +24,7 @@
 }
 
 .form_h1div {
-  height: 80%;
+  min-height: 400px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: start;
@@ -88,7 +89,7 @@
 }
 
 .form_divinput {
-  width: 90%;
+  /* width: 90%; */
   padding: 2em;
   margin-top: 1em;
   display: flex;
@@ -139,7 +140,7 @@
 }
 
 .form_divbutton {
-  height: 20%;
+  /* height: 20%; */
   display: flex;
   justify-content: flex-end;
   align-items: center;

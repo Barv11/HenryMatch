@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import classNames from "classnames";
 
+import { useAuth0 } from "@auth0/auth0-react";
 import { UilAngleUp, UilAngleDown } from "@iconscout/react-unicons";
 
 import s from "./InterestForm.module.css";
-import { useEffect } from "react";
+import { saveInterests } from "../../redux/actions";
 
 export default function InterestForm() {
+  const dispatch = useDispatch();
+  const { getAccessTokenSilently } = useAuth0();
   const [clickedUp, setClickedUp] = useState(false);
   const [clickeDown, setClickeDown] = useState(false);
   const [error, setError] = useState({
@@ -18,17 +22,44 @@ export default function InterestForm() {
 
   const [current, setCurrent] = useState(0);
 
-  const [allAnswers, setAllAnswers] = useState({
-    1: [],
-    2: [],
-    3: [],
-    4: [],
-    5: [],
-    6: [],
-    7: [],
-    8: [],
-    9: [],
-  });
+  const [allAnswers, setAllAnswers] = useState([
+    {
+      question: "",
+      answers: [],
+    },
+    {
+      question: "",
+      answers: [],
+    },
+    {
+      question: "",
+      answers: [],
+    },
+    {
+      question: "",
+      answers: [],
+    },
+    {
+      question: "",
+      answers: [],
+    },
+    {
+      question: "",
+      answers: [],
+    },
+    {
+      question: "",
+      answers: [],
+    },
+    {
+      question: "",
+      answers: [],
+    },
+    {
+      question: "",
+      answers: [],
+    },
+  ]);
 
   const questionsData = useSelector((state) => state.questions);
 
@@ -46,35 +77,43 @@ export default function InterestForm() {
     }, 500);
   };
 
-  const handleClose = (e) => {
+  const handleClose = async (e) => {
     e.preventDefault();
-    let errorFound = false;
-    let question = [];
-    for (const key in allAnswers) {
-      if (!allAnswers[key].length) {
-        question.push(key);
-        errorFound = true;
-      }
-    }
-    setError({ state: errorFound, site: question });
-    if ( !errorFound ) {
-      alert('Los datos fueron guardados exitosamente.')
+    const token = await getAccessTokenSilently();
+
+    const question = allAnswers
+      .map((item, index) => (item.answers.length === 0 ? index + 1 : null))
+      .filter((index) => index !== null);
+
+    if (question.length) {
+      setError({ state: true, site: question });
+    } else {
+      console.log("Enviando datos");
+      dispatch(saveInterests({ token, data: allAnswers }));
     }
   };
 
   const handleOnChange = (e) => {
     setError({ ...error, state: false });
-    if (!allAnswers[current + 1].includes(e.target.value)) {
-      setAllAnswers({
-        ...allAnswers,
-        [current + 1]: [...allAnswers[current + 1], e.target.value],
+    if (!allAnswers[current].answers.includes(e.target.value)) {
+      setAllAnswers((prev) => {
+        const data = [...prev];
+        data[current] = {
+          questions: questionsData[current].question,
+          answers: [...allAnswers[current].answers, e.target.value],
+        };
+        return data;
       });
     } else {
-      setAllAnswers({
-        ...allAnswers,
-        [current + 1]: allAnswers[current + 1].filter(
-          (el) => el !== e.target.value
-        ),
+      setAllAnswers((prev) => {
+        const data = [...prev];
+        data[current] = {
+          questions: questionsData[current].question,
+          answers: allAnswers[current].answers.filter(
+            (el) => el !== e.target.value
+          ),
+        };
+        return data;
       });
     }
   };
@@ -105,7 +144,7 @@ export default function InterestForm() {
                   <div key={`${el} ${idx} ${current}`} className={s.mycheckbox}>
                     <input
                       type="checkbox"
-                      checked={allAnswers[current + 1].includes(el)}
+                      checked={allAnswers[current].answers.includes(el)}
                       value={el}
                       name={idx}
                       id={el}
@@ -125,7 +164,7 @@ export default function InterestForm() {
                 </button>
               ) : (
                 <button type="button" className={s.submit} onClick={handleNext}>
-                  Ok!
+                  Siguiente!
                 </button>
               )}
               {error.state && (
@@ -154,7 +193,7 @@ export default function InterestForm() {
                 </button>
               </div>
             </div>
-          <p>*No salir hasta terminar o perderá su progreso</p>
+            <p>*No salir hasta terminar o perderá su progreso</p>
           </form>
         </div>
       </section>
