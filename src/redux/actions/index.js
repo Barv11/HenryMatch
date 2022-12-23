@@ -11,6 +11,7 @@ import {
   GET_COUNTRIES,
   GET_COUNTRY_STATES,
   SET_REGISTERED,
+  SAVE_INTERESTS,
 } from "./actionsTypes";
 
 let url = "http://localhost:3001";
@@ -128,7 +129,25 @@ export const getCountryStates = (state) => async (dispatch) => {
 };
 
 export const getQuestions = (token) => async (dispatch) => {
-  const questions = (await axios.get(`${url}/questions/all`, header(token)))
-    .data;
-  dispatch({ type: GET_QUESTIONS, payload: questions });
+  try {
+    const questions = (await axios.get(`${url}/questions/all`, header(token)))
+      .data;
+    dispatch({ type: GET_QUESTIONS, payload: questions });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
+
+export const saveInterests =
+  ({ token, data }) =>
+  async (dispatch) => {
+    try {
+      const response = (
+        await axios.post(`${url}/user/interests`, data, header(token))
+      ).data;
+      console.log(response)
+      dispatch({ type: SAVE_INTERESTS, payload: response });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };

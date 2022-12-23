@@ -37,7 +37,7 @@ export default function Home() {
             en el mundo IT.
           </p>
           <ButtonText text={"Empezar"} onClick={handleFormInterest} />
-          {/* <Prueba /> */}
+          <Prueba />
         </section>
         <section className={s.cont_right}>
           <img src="/image.webp" alt="image" />

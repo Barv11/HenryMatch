@@ -22,6 +22,8 @@ export default function Profile() {
   const henry = useSelector((state) => state.userHenry);
   const { id } = useParams();
 
+  console.log(user);
+
   useEffect(async () => {
     setTimeout(async () => {
       if (id) {
@@ -94,6 +96,18 @@ export default function Profile() {
               <Rocket />
               <Rocket />
               <Rocket />
+            </div>
+            <div className={s.interests}>
+              {user.interests.length
+                ? user.interests.map((obj, idx) => (
+                    <div key={obj.questions}>
+                      <h2>{obj.questions}</h2>
+                      {obj.answers.map((answer, id) => (
+                        <span key={`${answer} ${idx + id}`}>{answer}</span>
+                      ))}
+                    </div>
+                  ))
+                : null}
             </div>
           </section>
         </section>
