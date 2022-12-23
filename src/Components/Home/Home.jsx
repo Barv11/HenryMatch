@@ -7,15 +7,17 @@ import ModalData from "../Modal/ModalData";
 import InviteLogin from "../InviteLogin/InviteLogin";
 
 import s from "./Home.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [openInvit, setOpenInvit] = useState(false);
 
   const isLogged = useSelector((state) => state.isLogged);
 
   const handleFormInterest = () => {
-    isLogged ? setOpenModal(true) : setOpenInvit(true);
+    isLogged ? navigate("/match/interest") : setOpenInvit(true);
   };
 
   useEffect(() => {
@@ -31,16 +33,16 @@ export default function Home() {
             Déjanos conocerte para poder mostrarte Henrys con tus intereses
           </h2>
           <p>
-            Empieza a conectar con Henrys que compartan tus gustos en intereses
+            Empieza a conectar con Henrys que compartan tus gustos e intereses
             en el mundo IT.
           </p>
           <ButtonText text={"Empezar"} onClick={handleFormInterest} />
-          {openModal && <ModalData closeModal={setOpenModal} />}
-          <Prueba />
+          {/* <Prueba /> */}
         </section>
         <section className={s.cont_right}>
           <img src="/image.webp" alt="image" />
         </section>
+        {openModal && <ModalData closeModal={setOpenModal} />}
         {openInvit && <InviteLogin setOpenInvit={setOpenInvit} />}
       </section>
     </>

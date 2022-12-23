@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, Navigate } from "react-router-dom";
 import About from "../Components/About/About";
 import Home from "../Components/Home/Home";
+import InterestForm from "../Components/InterestsForm/InterestForm";
 import InviteLogin from "../Components/InviteLogin/InviteLogin";
 import LandingPage from "../Components/LandingPage/LandingPage";
 import Nav from "../Components/Nav/Nav";
@@ -50,10 +51,11 @@ function App() {
           <Route path="me" element={<Profile />} />
           <Route path="henry/:id" element={<Profile />} />
           <Route path="about" element={<About />} />
-          <Route path="*" element={<Navigate to="404" replace />} />
-          <Route path="404" element={<NotFound />} />
+          <Route path="interest" element={<InterestForm />} />
+          {/* <Route path="*" element={<Navigate to="404" replace />} /> */}
+          {/* <Route path="404" element={<NotFound />} /> */}
         </Route>
-        <Route path="*" element={<Navigate to="/match/404" replace />} />
+        {/* <Route path="*" element={<Navigate to="/match/404" replace />} /> */}
       </Routes>
     </>
   );
