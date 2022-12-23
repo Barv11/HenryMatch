@@ -123,6 +123,10 @@ export default function InterestForm() {
     setClickeDown(false);
   }, [current]);
 
+  useEffect(() => {
+    document.title = "Henry Match | Interéses";
+  }, []);
+
   return (
     questionsData.length && (
       <section className={s.container}>

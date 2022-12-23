@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    document.title = "Henry Match | Home";
+    document.title = "Henry Match | Inicio";
   }, []);
 
   return (
