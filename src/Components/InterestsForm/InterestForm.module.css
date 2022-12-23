@@ -19,6 +19,7 @@
 
 .form {
   width: 80%;
+  overflow: hidden;
 }
 
 .form_h1div {
