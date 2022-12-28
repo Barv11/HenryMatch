@@ -1,3 +1,90 @@
 .container {
-    font-size: 5rem;
+  width: 100%;
+}
+
+.title {
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  gap: 1rem; 
+}
+
+.title > span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.title > h1 {
+  width: 22ch;
+  text-align: center;
+  font-weight: 700;
+  font-size: 3.7rem;
+}
+
+.title > h1 > b {
+  color: #ffff00;
+}
+
+.blockWhy {
+  min-height: 600px;
+  display: flex;
+  flex-flow: row nowrap;
+  color: #000000;
+}
+
+.izqWhy {
+  flex-basis: 58%;
+  background-color: #ffff00;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: start;
+  justify-content: center;
+  gap: 2em;
+  padding: 1em 2.5em;
+}
+
+.izqWhy > span {
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.izqWhy > h1 {
+  position: relative;
+  font-weight: 700;
+  font-size: 2rem;
+  z-index: 1;
+}
+
+.izqWhy > h1::after {
+  position: absolute;
+  content: "";
+  z-index: -1;
+  background-color: #ffffff;
+  width: 100%;
+  height: 15px;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.izqWhy > p {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  text-indent: 1em;
+  /* word-spacing: 4em; */
+  font-weight: 400;
+}
+
+.derWhy {
+  flex-basis: 42%;
+}
+
+.derWhy > img {
+  width: 100%;
+  height: 100%;
+  object-position: 80% 20%;
+  object-fit: cover;
 }

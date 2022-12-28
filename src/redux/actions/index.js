@@ -12,6 +12,7 @@ import {
   GET_COUNTRY_STATES,
   SET_REGISTERED,
   SAVE_INTERESTS,
+  GET_MATCHS,
 } from "./actionsTypes";
 
 let url = "http://localhost:3001";
@@ -152,3 +153,7 @@ export const saveInterests =
       console.log(error.message);
     }
   };
+
+export const getMatchs = (user) => (dispatch) => {
+  dispatch({ type: GET_MATCHS, payload: user });
+};
