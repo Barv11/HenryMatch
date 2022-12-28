@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { useAuth0 } from "@auth0/auth0-react";
 import {
   UilGithub,
   UilLinkedin,
@@ -10,19 +9,21 @@ import {
 } from "@iconscout/react-unicons";
 import Rocket from "./Rocket/Rocket";
 import Loader from "../Loader/Loader";
-import { clearUser, searchUserById } from "../../redux/actions";
+import { clearUser, getMatchs, searchUserById } from "../../redux/actions";
 import s from "./Profile.module.css";
+import Ribbons from "./Ribbons/Ribbons";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const location = useLocation();
-  // const { getAccessTokenSilently } = useAuth0(); //
   const [current, setCurrent] = useState({});
   const user = useSelector((state) => state.userCurrent);
   const henry = useSelector((state) => state.userHenry);
+  const userCurrentMatchs = useSelector((state) => state.userCurrentMatchs);
   const { id } = useParams();
 
   useEffect(async () => {
+    dispatch(clearUser());
     setTimeout(async () => {
       if (id) {
         dispatch(searchUserById(id));
@@ -45,6 +46,14 @@ export default function Profile() {
       dispatch(clearUser());
     };
   }, []);
+
+  useEffect(() => {
+    if (Object.entries(current).length && current.interests) {
+      dispatch(getMatchs(current));
+    }
+  }, [current]);
+
+  console.log(Boolean(userCurrentMatchs.length && !id));
 
   if (!Object.entries(current).length) {
     return <Loader text="Buscando un Henry" />;
@@ -115,6 +124,25 @@ export default function Profile() {
                     </div>
                   </div>
                 ))}
+              </div>
+            ) : null}
+            {userCurrentMatchs.length && !id ? (
+              <div className={s.match}>
+                <h1>Henry Match (Top #3)</h1>
+                <div className={s.top}>
+                  {userCurrentMatchs.slice(0, 3).map((el, id) => (
+                    <div className={s.top_div} key={el.nickname}>
+                      <Ribbons top={id + 1} />
+                      <img src={el.picture} alt={el.nickname} />
+                      <div>
+                        <span>{el.firstname}</span>
+                        <Link to={"/match/henry/" + el.id} className={s.link}>
+                          Visitar
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : null}
           </section>

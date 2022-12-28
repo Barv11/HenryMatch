@@ -12,6 +12,7 @@ import NotFound from "../Components/NotFound/NotFound";
 import Profile from "../Components/Profile/Profile";
 import Welcome from "../Components/Welcome/Welcome";
 import {
+  getAllUsers,
   getCountries,
   getQuestions,
   searchUser,
@@ -30,12 +31,13 @@ function App() {
       const token = await getAccessTokenSilently();
       dispatch(getQuestions(token));
       dispatch(searchUser(token));
+      dispatch(getAllUsers(token));
     }
     dispatch(setRegistered(isAuthenticated));
   }, [isAuthenticated]);
 
   useEffect(() => {
-    dispatch(getCountries());
+    // dispatch(getCountries());
   }, []);
 
   console.log(message);

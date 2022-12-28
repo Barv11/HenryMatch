@@ -6,8 +6,7 @@
   transition: all 1s;
 }
 
-.warning {
-  background-color: #000000;
+.warning { 
   height: 0;
   font-size: 0;
   /* transform-origin: top; */
@@ -23,9 +22,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5em 1em;
-  background-color: #000000;
-  color: white;
+  padding: 0.5em 1em; 
+  color: #ffffff;
+  box-shadow: 0 0 8px 0 white;
 }
 
 .navbar {
@@ -55,12 +54,12 @@
 }
 
 .link {
-  color: rgb(255, 255, 255);
+  color: #ffffff;
   text-decoration: none;
 }
 
 .link:hover {
-  background-color: rgba(105, 105, 105, 0.308);
+  background-color: #6969694f;
   border-radius: 5px;
 }
 
@@ -118,25 +117,22 @@
 }
 
 .menu {
-  color: white;
+  color: #ffffff;
   font-size: 1rem;
   font-family: var(--fontGlobal);
   text-transform: initial;
 }
 
 .drop {
-  color: black;
+  color: #000000;
   text-decoration: none;
   font-family: var(--fontGlobal);
 }
 
 .body {
-  position: relative;
-  min-height: 550px;
-  min-height: calc(100vh - 56px);
+  min-height: 650px;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
-  background-color: #414141;
+  align-items: flex-start; 
   color: #e4e4e4;
 }

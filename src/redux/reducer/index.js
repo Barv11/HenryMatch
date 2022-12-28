@@ -10,11 +10,14 @@ import {
   GET_COUNTRY_STATES,
   SET_REGISTERED,
   SAVE_INTERESTS,
+  GET_MATCHS,
 } from "../actions/actionsTypes";
+import { calculateCommonInterests } from "../actions/controllers";
 
 const initialState = {
   users: [],
   userCurrent: {},
+  userCurrentMatchs: [],
   userHenry: {},
   message: "",
   countries: [],
@@ -79,12 +82,25 @@ function rootReducer(state = initialState, action) {
         ...state,
         questions: action.payload,
       };
-      case SAVE_INTERESTS:
-        return {
-          ...state,
-          userCurrent: action.payload.data,
-          message: action.payload.status,
-        }
+    case SAVE_INTERESTS:
+      return {
+        ...state,
+        userCurrent: action.payload.data,
+        message: action.payload.status,
+      };
+    case GET_MATCHS:
+      const copyUsers = state.users.filter(
+        (user) => user.email !== action.payload.email
+      );
+      copyUsers.sort(
+        (a, b) =>
+          calculateCommonInterests(b, action.payload) -
+          calculateCommonInterests(a, action.payload)
+      );
+      return {
+        ...state,
+        userCurrentMatchs: copyUsers,
+      };
     default:
       return {
         ...state,

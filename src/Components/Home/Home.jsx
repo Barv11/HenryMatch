@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import ButtonText from "./ButtonText/ButtonText";
-import Prueba from "./Prueba/Prueba";
 import ModalData from "../Modal/ModalData";
 import InviteLogin from "../InviteLogin/InviteLogin";
 
@@ -13,11 +12,19 @@ export default function Home() {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [openInvit, setOpenInvit] = useState(false);
-
   const isLogged = useSelector((state) => state.isLogged);
+  const userCurrent = useSelector((state) => state.userCurrent);
 
   const handleFormInterest = () => {
-    isLogged ? navigate("/match/interest") : setOpenInvit(true);
+    if (isLogged) {
+      if (userCurrent.interests) {
+        navigate("/match/me");
+      } else {
+        navigate("/match/interest");
+      }
+    } else {
+      setOpenInvit(true);
+    }
   };
 
   useEffect(() => {
@@ -37,7 +44,6 @@ export default function Home() {
             en el mundo IT.
           </p>
           <ButtonText text={"Empezar"} onClick={handleFormInterest} />
-          <Prueba />
         </section>
         <section className={s.cont_right}>
           <img src="/image.webp" alt="image" />
