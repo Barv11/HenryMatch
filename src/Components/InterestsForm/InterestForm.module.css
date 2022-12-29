@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 650px;
   background-image: linear-gradient(to right, #000000d7, #000000d7),
-    url("../../../public/backgroundhenry.jpg");
+    url("/backgroundhenry.jpg");
   background-position: center;
   background-size: cover;
   display: flex;
