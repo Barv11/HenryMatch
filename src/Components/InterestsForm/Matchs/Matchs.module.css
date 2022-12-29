@@ -46,7 +46,6 @@
 
 .top_div {
   flex-basis: 33%;
-  position: relative;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -54,15 +53,26 @@
   gap: 0.8em;
 }
 
-.top_div > svg {
+.icon {
+  /* border: 1px solid salmon; */
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.icon > svg {
+  /* border: 1px solid salmon; */
   position: absolute;
-  display: none;
+  left: -25%;
+  top: -25%;
+  filter: drop-shadow(0 0 10px black) drop-shadow(0 0 5px black)
+    drop-shadow(0 0 5px black);
   width: 50px;
   height: 50px;
 }
 
-.top_div > img {
-  outline: 3px solid #ffff00;
+.icon > img {
+  outline: 3px solid yellow;
   border-radius: 50%;
   width: 80px;
   object-fit: contain;
@@ -86,4 +96,19 @@
   font-size: 1rem;
   text-decoration: underline;
   color: #ffff00;
+}
+
+.others {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.top_div > img {
+  outline: 3px solid yellow;
+  border-radius: 50%;
+  width: 60px;
+  object-fit: contain;
+  aspect-ratio: 1/1;
 }

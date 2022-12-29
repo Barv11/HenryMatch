@@ -13,23 +13,47 @@ export default function Matchs() {
   useEffect(() => {
     dispatch(getMatchs(user));
   }, []);
-  return ( 
-      <div className={s.match}>
-        <h1>Henry Match (Top #3)</h1>
-        <div className={s.top}>
-          {userCurrentMatchs.slice(0, 3).map((el, id) => (
-            <div className={s.top_div} key={el.nickname}>
+  console.log(userCurrentMatchs.length);
+  return (
+    <div className={s.match}>
+      <h1>Henry Match (Top #3)</h1>
+      <div className={s.top}>
+        {userCurrentMatchs.slice(0, 3).map((el, id) => (
+          <div className={s.top_div} key={el.nickname}>
+            <div className={s.icon}>
               <Ribbons top={id + 1} />
               <img src={el.picture} alt={el.nickname} />
-              <div>
-                <span>{el.firstname}</span>
-                <Link to={"/match/henry/" + el.id} className={s.link}>
-                  Visitar
-                </Link>
-              </div>
             </div>
-          ))}
-        </div>
-      </div> 
+            <div>
+              <span>{el.firstname}</span>
+              <Link to={"/match/henry/" + el.id} className={s.link}>
+                Visitar
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className={s.others}>
+        {userCurrentMatchs.slice(3, 10).map((el, id) => (
+          <div className={s.top_div} key={el.nickname}>
+            {id + 4}
+            <img src={el.picture} alt={el.nickname} />
+            <div>
+              <span>{el.firstname}</span>
+              <Link to={"/match/henry/" + el.id} className={s.link}>
+                Visitar
+              </Link>
+            </div>
+          </div>
+        ))}
+        {userCurrentMatchs.length > 10 && (
+          <>
+            <b>.</b>
+            <b>.</b>
+            <b>.</b>
+          </>
+        )}
+      </div>
+    </div>
   );
 }

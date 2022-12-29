@@ -8,8 +8,7 @@
 
 .profile {
   z-index: 3;
-  min-width: 40%;
-  max-width: 80%;
+  min-width: 80%;
   margin-top: 4em;
   border-radius: 10px;
   display: flex;
@@ -35,7 +34,8 @@
   outline: 3px solid yellow;
   border-radius: 50%;
   transform: translateY(-40%);
-}
+  filter: drop-shadow(0 0 5px black) drop-shadow(0 0 5px black);
+} 
 
 .card > h2 {
   transform: translateY(-50%);
@@ -56,7 +56,7 @@
 .card > span > svg {
   width: 20px;
   height: 20px;
-  color: #885656;
+  color: #885656; 
 }
 
 .card > p {
@@ -122,6 +122,7 @@
 .rocket {
   display: flex;
   gap: 2em;
+  filter: drop-shadow(0 0 5px black) ;
 }
 
 .interests {
@@ -281,19 +282,24 @@
 
 .icon > svg {
   /* border: 1px solid salmon; */
-  position: absolute;
+  position: absolute; 
   opacity: 0.8;
   top: 70%;
   width: 50px;
   height: 50px;
+  z-index: 1;
+  filter: drop-shadow(0 0 5px black) drop-shadow(0 0 5px black);
 }
 
 .icon > img { 
+  position: relative;
   outline: 3px solid yellow;
   border-radius: 50%;
   width: 80px;
   object-fit: contain;
   aspect-ratio: 1/1;
+  z-index: -1;
+  filter: drop-shadow(0 0 5px black) drop-shadow(0 0 5px black);
 }
 
 .top_div > div {
