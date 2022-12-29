@@ -11,6 +11,8 @@ import {
   SET_REGISTERED,
   SAVE_INTERESTS,
   GET_MATCHS,
+  IS_LOADING,
+  SHOW_MATCHS,
 } from "../actions/actionsTypes";
 import { calculateCommonInterests } from "../actions/controllers";
 
@@ -23,6 +25,8 @@ const initialState = {
   countries: [],
   states: [],
   questions: [],
+  isLoading: false,
+  showMatchs: false,
   isLogged: false,
 };
 
@@ -72,6 +76,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         states: action.payload,
       };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
+    case SHOW_MATCHS:
+      return {
+        ...state,
+        showMatchs: action.payload,
+      };
     case SET_REGISTERED:
       return {
         ...state,
@@ -87,6 +101,8 @@ function rootReducer(state = initialState, action) {
         ...state,
         userCurrent: action.payload.data,
         message: action.payload.status,
+        isLoading: false,
+        showMatchs: true,
       };
     case GET_MATCHS:
       const copyUsers = state.users.filter(

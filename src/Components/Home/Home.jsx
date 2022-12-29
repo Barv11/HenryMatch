@@ -17,11 +17,11 @@ export default function Home() {
 
   const handleFormInterest = () => {
     if (isLogged) {
-      if (userCurrent.interests) {
-        navigate("/match/me");
-      } else {
+      // if (userCurrent.interests) {
+      //   navigate("/match/me");
+      // } else {
         navigate("/match/interest");
-      }
+      // }
     } else {
       setOpenInvit(true);
     }

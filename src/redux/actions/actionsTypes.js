@@ -10,3 +10,5 @@ export const GET_COUNTRY_STATES = "GET_COUNTRY_STATES";
 export const SET_REGISTERED = "SET_REGISTERED";
 export const SAVE_INTERESTS = "SAVE_INTERESTS";
 export const GET_MATCHS = "GET_MATCHS";
+export const IS_LOADING = "IS_LOADING";
+export const SHOW_MATCHS = "SHOW_MATCHS";

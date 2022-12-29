@@ -1,0 +1,89 @@
+.match {
+  width: 70%;
+  color: #ffffff;
+  display: flex;
+  gap: 3em;
+  align-items: center;
+  flex-flow: column nowrap;
+  opacity: 0;
+  animation: render 1s forwards;
+}
+
+@keyframes render {
+  100% {
+    opacity: 1;
+  }
+}
+
+.match > h1 {
+  position: relative;
+  font-size: 2rem;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.match > h1::after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  background-color: #c114c7;
+  width: 110%;
+  height: 15px;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: height 0.3s;
+}
+
+.top {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2em;
+}
+
+.top_div {
+  flex-basis: 33%;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8em;
+}
+
+.top_div > svg {
+  position: absolute;
+  display: none;
+  width: 50px;
+  height: 50px;
+}
+
+.top_div > img {
+  outline: 3px solid #ffff00;
+  border-radius: 50%;
+  width: 80px;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+}
+
+.top_div > div {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.8em;
+}
+
+.top_div > div > span {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.link {
+  font-size: 1rem;
+  text-decoration: underline;
+  color: #ffff00;
+}
