@@ -13,6 +13,8 @@ import {
   SET_REGISTERED,
   SAVE_INTERESTS,
   GET_MATCHS,
+  IS_LOADING,
+  SHOW_MATCHS,
 } from "./actionsTypes";
 
 let url = "http://localhost:3001";
@@ -130,6 +132,14 @@ export const getCountryStates = (state) => async (dispatch) => {
   }
 };
 
+export const isLoading = (bool) => (dispatch) => {
+  dispatch({ type: IS_LOADING, payload: bool });
+};
+
+export const showMatchs = (bool) => (dispatch) => {
+  dispatch({ type: SHOW_MATCHS, payload: bool });
+};
+
 export const getQuestions = (token) => async (dispatch) => {
   try {
     const questions = (await axios.get(`${url}/questions/all`, header(token)))
@@ -147,7 +157,6 @@ export const saveInterests =
       const response = (
         await axios.post(`${url}/user/interests`, data, header(token))
       ).data;
-      console.log(response);
       dispatch({ type: SAVE_INTERESTS, payload: response });
     } catch (error) {
       console.log(error.message);

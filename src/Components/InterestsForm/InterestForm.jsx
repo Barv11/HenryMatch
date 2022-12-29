@@ -8,7 +8,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { UilAngleUp, UilAngleDown } from "@iconscout/react-unicons";
 
 import s from "./InterestForm.module.css";
-import { saveInterests } from "../../redux/actions";
+import { saveInterests, isLoading } from "../../redux/actions";
+import Matchs from "./Matchs/Matchs";
+import Loader from "../Loader/Loader";
 
 export default function InterestForm() {
   const dispatch = useDispatch();
@@ -62,6 +64,8 @@ export default function InterestForm() {
   ]);
 
   const questionsData = useSelector((state) => state.questions);
+  const isLoadingForm = useSelector((state) => state.isLoading);
+  const showMatchsForm = useSelector((state) => state.showMatchs);
 
   const handlePrev = () => {
     setClickeDown(true);
@@ -89,7 +93,12 @@ export default function InterestForm() {
       setError({ state: true, site: question });
     } else {
       console.log("Enviando datos");
-      dispatch(saveInterests({ token, data: allAnswers }));
+      setClickeDown(true);
+      setTimeout(() => {
+        setClickeDown(false);
+        dispatch(isLoading(true));
+        dispatch(saveInterests({ token, data: allAnswers }));
+      }, 500);
     }
   };
 
@@ -131,74 +140,87 @@ export default function InterestForm() {
     questionsData.length && (
       <section className={s.container}>
         <div className={s.container_div}>
-          <form className={s.form}>
-            <div
-              className={classNames(s.form_h1div, {
-                [s.fadeUp]: clickedUp,
-                [s.fadeDown]: clickeDown,
-              })}
-            >
-              <h1>
-                <span>{current + 1} ➡</span>
-                {questionsData[current].question}
-              </h1>
+          {isLoadingForm ? (
+            <Loader text="Buscando coincidencias..." />
+          ) : showMatchsForm ? (
+            <Matchs />
+          ) : (
+            <form className={s.form}>
+              <div
+                className={classNames(s.form_h1div, {
+                  [s.fadeUp]: clickedUp,
+                  [s.fadeDown]: clickeDown,
+                })}
+              >
+                <h1>
+                  <span>{current + 1} ➡</span>
+                  {questionsData[current].question}
+                </h1>
 
-              <div className={s.form_divinput}>
-                {questionsData[current].answers.map((el, idx) => (
-                  <div key={`${el} ${idx} ${current}`} className={s.mycheckbox}>
-                    <input
-                      type="checkbox"
-                      checked={allAnswers[current].answers.includes(el)}
-                      value={el}
-                      name={idx}
-                      id={el}
-                      onChange={handleOnChange}
-                    />
-                    <label htmlFor={el}>{el}</label>
-                  </div>
-                ))}
+                <div className={s.form_divinput}>
+                  {questionsData[current].answers.map((el, idx) => (
+                    <div
+                      key={`${el} ${idx} ${current}`}
+                      className={s.mycheckbox}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={allAnswers[current].answers.includes(el)}
+                        value={el}
+                        name={idx}
+                        id={el}
+                        onChange={handleOnChange}
+                      />
+                      <label htmlFor={el}>{el}</label>
+                    </div>
+                  ))}
+                </div>
+                {current === questionsData.length - 1 ? (
+                  <button
+                    type="submit"
+                    className={s.submit}
+                    onClick={handleClose}
+                  >
+                    Enviar mis datos
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className={s.submit}
+                    onClick={handleNext}
+                  >
+                    Siguiente!
+                  </button>
+                )}
+                {error.state && (
+                  <p className={s.error}>{`Pregunta${
+                    error.site.length > 1 ? "s" : ""
+                  } ${error.site.join(
+                    ", "
+                  )}: Selecciona un campo como mínimo.`}</p>
+                )}
               </div>
-              {current === questionsData.length - 1 ? (
-                <button
-                  type="submit"
-                  className={s.submit}
-                  onClick={handleClose}
-                >
-                  Enviar mis datos
-                </button>
-              ) : (
-                <button type="button" className={s.submit} onClick={handleNext}>
-                  Siguiente!
-                </button>
-              )}
-              {error.state && (
-                <p className={s.error}>{`Pregunta${
-                  error.site.length > 1 ? "s" : ""
-                } ${error.site.join(
-                  ", "
-                )}: Selecciona un campo como mínimo.`}</p>
-              )}
-            </div>
-            <div className={s.form_divbutton}>
-              <div className={s.form_buttons}>
-                <button
-                  type="button"
-                  disabled={current === 0}
-                  onClick={handlePrev}
-                >
-                  <UilAngleUp />
-                </button>
-                <button
-                  type="button"
-                  disabled={current === questionsData.length - 1}
-                  onClick={handleNext}
-                >
-                  <UilAngleDown />
-                </button>
+              <div className={s.form_divbutton}>
+                <div className={s.form_buttons}>
+                  <button
+                    type="button"
+                    disabled={current === 0}
+                    onClick={handlePrev}
+                  >
+                    <UilAngleUp />
+                  </button>
+                  <button
+                    type="button"
+                    disabled={current === questionsData.length - 1}
+                    onClick={handleNext}
+                  >
+                    <UilAngleDown />
+                  </button>
+                </div>
               </div>
-            </div>
-            <p>*No salir hasta terminar o perderá su progreso</p>
-          </form>
+              <p>*No salir hasta terminar o perderá su progreso</p>
+            </form>
+          )}
         </div>
       </section>
     )

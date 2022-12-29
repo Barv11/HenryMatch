@@ -1,6 +1,10 @@
 export const calculateCommonInterests = (userA, userB) => {
   let commonInterests = 0;
 
+  if (!userA.interests || !userB.interests) {
+    return 0;
+  }
+
   userA.interests.forEach((interestA) => {
     userB.interests.forEach((interestB) => {
       if (interestA.questions === interestB.questions) {

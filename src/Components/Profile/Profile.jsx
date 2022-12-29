@@ -53,8 +53,6 @@ export default function Profile() {
     }
   }, [current]);
 
-  console.log(Boolean(userCurrentMatchs.length && !id));
-
   if (!Object.entries(current).length) {
     return <Loader text="Buscando un Henry" />;
   } else {
@@ -132,8 +130,10 @@ export default function Profile() {
                 <div className={s.top}>
                   {userCurrentMatchs.slice(0, 3).map((el, id) => (
                     <div className={s.top_div} key={el.nickname}>
-                      <Ribbons top={id + 1} />
-                      <img src={el.picture} alt={el.nickname} />
+                      <div className={s.icon}>
+                        <Ribbons top={id + 1} />
+                        <img src={el.picture} alt={el.nickname} />
+                      </div>
                       <div>
                         <span>{el.firstname}</span>
                         <Link to={"/match/henry/" + el.id} className={s.link}>
